@@ -1,4 +1,5 @@
 const DATA_URL = "./data/servers.json";
+const LEGACY_DATA_URL = "./data/legacy-servers.json";
 const DEFAULT_REGION_ORDER = ["RU", "EU", "NA", "SEA", "NEA"];
 
 const $ = (id) => document.getElementById(id);
@@ -35,9 +36,12 @@ async function loadDatabase({ notify = false } = {}) {
   $("refreshBtn").disabled = true;
 
   try {
-    const response = await fetch(`${DATA_URL}?ts=${Date.now()}`, {
-      cache: "no-store",
-    });
+    const timestamp = Date.now();
+    const [response, legacyResponse] = await Promise.all([
+      fetch(`${DATA_URL}?ts=${timestamp}`, { cache: "no-store" }),
+      fetch(`${LEGACY_DATA_URL}?ts=${timestamp}`, { cache: "no-store" })
+        .catch(() => null),
+    ]);
 
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
@@ -47,6 +51,43 @@ async function loadDatabase({ notify = false } = {}) {
 
     if (!payload || !Array.isArray(payload.servers)) {
       throw new Error("Некорректный файл данных");
+    }
+
+    let fallbackOldServers = [];
+
+    if (legacyResponse?.ok) {
+      try {
+        const legacyPayload = await legacyResponse.json();
+        fallbackOldServers = Array.isArray(legacyPayload?.servers)
+          ? legacyPayload.servers
+          : [];
+      } catch {
+        fallbackOldServers = [];
+      }
+    }
+
+    const archiveCount =
+      payload.summary?.historicalArchiveCount ?? fallbackOldServers.length;
+    const deferredCount =
+      payload.summary?.historicalComparisonDeferred ?? archiveCount;
+    const comparisonPending =
+      payload.legacyComparisonPending === true
+      || !payload.generatedAt
+      || (
+        Array.isArray(payload.oldServers)
+        && payload.oldServers.length === 0
+        && archiveCount > 0
+        && deferredCount >= archiveCount
+      );
+
+    if (
+      (!Array.isArray(payload.oldServers) || comparisonPending)
+      && fallbackOldServers.length
+    ) {
+      payload.oldServers = fallbackOldServers;
+      payload.summary ??= {};
+      payload.summary.historicalArchiveCount = fallbackOldServers.length;
+      payload.summary.oldServerCount = fallbackOldServers.length;
     }
 
     database = payload;
@@ -371,7 +412,9 @@ function renderLegacyServers(oldServers) {
 
       <div class="legacy-content">
         <p class="legacy-note">
-          Исторические адреса, которых нет в последнем актуальном списке. Если сервер снова появляется, он автоматически удаляется из этого раздела.
+          ${database?.legacyComparisonPending
+            ? "Архив ранее известных адресов. После успешного обновления серверы, которые снова появились в актуальном списке, будут автоматически скрыты."
+            : "Исторические адреса, которых нет в последнем актуальном списке. Если сервер снова появляется, он автоматически удаляется из этого раздела."}
         </p>
 
         <div class="table-wrap">

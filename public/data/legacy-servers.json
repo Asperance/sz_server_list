@@ -1,76 +1,7 @@
 {
-  "schemaVersion": 3,
-  "generatedAt": null,
-  "complete": false,
-  "regionOrder": [
-    "RU",
-    "EU",
-    "NA",
-    "SEA",
-    "NEA"
-  ],
-  "summary": {
-    "regionTotal": 5,
-    "regionAvailable": 0,
-    "regionUnavailable": 5,
-    "poolCount": 0,
-    "tunnelCount": 0,
-    "uniqueIpCount": 0,
-    "networkInfoCount": 0,
-    "historicalArchiveCount": 99,
-    "oldServerCount": 99,
-    "historicalServersLiveNow": 0,
-    "historicalComparisonDeferred": 99
-  },
-  "regions": {
-    "RU": {
-      "code": "RU",
-      "label": "Россия",
-      "available": false,
-      "error": null,
-      "poolCount": 0,
-      "tunnelCount": 0,
-      "uniqueIpCount": 0
-    },
-    "EU": {
-      "code": "EU",
-      "label": "Европа",
-      "available": false,
-      "error": null,
-      "poolCount": 0,
-      "tunnelCount": 0,
-      "uniqueIpCount": 0
-    },
-    "NA": {
-      "code": "NA",
-      "label": "Америка",
-      "available": false,
-      "error": null,
-      "poolCount": 0,
-      "tunnelCount": 0,
-      "uniqueIpCount": 0
-    },
-    "SEA": {
-      "code": "SEA",
-      "label": "Юго-Восточная Азия",
-      "available": false,
-      "error": null,
-      "poolCount": 0,
-      "tunnelCount": 0,
-      "uniqueIpCount": 0
-    },
-    "NEA": {
-      "code": "NEA",
-      "label": "Северо-Восточная Азия",
-      "available": false,
-      "error": null,
-      "poolCount": 0,
-      "tunnelCount": 0,
-      "uniqueIpCount": 0
-    }
-  },
-  "servers": [],
-  "oldServers": [
+  "schemaVersion": 1,
+  "snapshotDate": "2026-07-18",
+  "servers": [
     {
       "region": "RU",
       "pool": "AST",
@@ -1259,6 +1190,5 @@
       "city": "Сидней",
       "country": "Австралия"
     }
-  ],
-  "legacyComparisonPending": true
+  ]
 }

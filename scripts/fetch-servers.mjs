@@ -36,9 +36,10 @@ const IP_CACHE_FILE = resolve("public/data/ip-cache.json");
 const LEGACY_FILE = resolve("scripts/legacy-servers.json");
 
 const SOURCE_TIMEOUT_MS = 25_000;
-const LOOKUP_TIMEOUT_MS = 15_000;
+const LOOKUP_TIMEOUT_MS = 6_000;
+const IP_LOOKUP_BUDGET_MS = 60_000;
 const IP_CACHE_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
-const IP_LOOKUP_CONCURRENCY = 4;
+const IP_LOOKUP_CONCURRENCY = 8;
 
 function splitAddress(address) {
   const value = String(address ?? "").trim();
@@ -239,30 +240,61 @@ async function enrichIpCache(ips, oldCache) {
   const missingOrStale = ips.filter((ip) => !isFreshCacheEntry(cache[ip]));
 
   if (!missingOrStale.length) {
-    return { cache, queried: 0, succeeded: 0 };
+    console.log(`IP metadata: all ${ips.length} addresses loaded from cache.`);
+    return {
+      cache,
+      requested: 0,
+      succeeded: 0,
+      deferred: 0,
+      deadlineReached: false,
+    };
   }
 
   console.log(
     `IP metadata: ${missingOrStale.length} new or stale addresses, `
       + `${ips.length - missingOrStale.length} cached.`,
   );
+  console.log(
+    `IP metadata budget: ${IP_LOOKUP_BUDGET_MS / 1000}s, `
+      + `${IP_LOOKUP_CONCURRENCY} parallel workers, `
+      + `${LOOKUP_TIMEOUT_MS / 1000}s per request.`,
+  );
 
+  const startedAt = Date.now();
   let cursor = 0;
+  let requested = 0;
   let succeeded = 0;
+  let deadlineReached = false;
 
   async function worker() {
     while (cursor < missingOrStale.length) {
+      if (Date.now() - startedAt >= IP_LOOKUP_BUDGET_MS) {
+        deadlineReached = true;
+        return;
+      }
+
       const ip = missingOrStale[cursor++];
+      requested += 1;
 
       try {
         cache[ip] = await lookupIp(ip);
         succeeded += 1;
-        console.log(`[IP OK] ${ip}: ${cache[ip].asn} ${cache[ip].operator}`);
+
+        if (
+          succeeded <= 5
+          || succeeded % 10 === 0
+          || cursor >= missingOrStale.length
+        ) {
+          console.log(
+            `[IP progress] ${cursor}/${missingOrStale.length}; `
+              + `${succeeded} successful.`,
+          );
+        }
       } catch (error) {
         console.error(`[IP ERROR] ${ip}: ${error?.message ?? error}`);
       }
 
-      await new Promise((resolve) => setTimeout(resolve, 150));
+      await new Promise((resolve) => setTimeout(resolve, 75));
     }
   }
 
@@ -273,10 +305,21 @@ async function enrichIpCache(ips, oldCache) {
     ),
   );
 
+  const deferred = Math.max(0, missingOrStale.length - requested);
+
+  if (deadlineReached || deferred > 0) {
+    console.warn(
+      `IP metadata time budget reached. Deferred ${deferred} addresses `
+        + `until the next scheduled run.`,
+    );
+  }
+
   return {
     cache,
-    queried: missingOrStale.length,
+    requested,
     succeeded,
+    deferred,
+    deadlineReached,
   };
 }
 
@@ -420,6 +463,9 @@ function buildRegions(regionResults, servers) {
 async function main() {
   const generatedAt = new Date().toISOString();
 
+  console.log("Starting server snapshot build...");
+  console.log("Phase 1/4: fetching current regional server lists.");
+
   const [regionResults, legacyData, previousPayload] = await Promise.all([
     Promise.all(SOURCES.map(fetchRegion)),
     readJsonFile(LEGACY_FILE, { servers: [] }),
@@ -448,11 +494,14 @@ async function main() {
     );
   }
 
+  console.log("Phase 2/4: preparing current server list.");
+
   const rawServers = flattenServers(regionResults);
   const uniqueIps = [
     ...new Set(rawServers.map((server) => server.ip).filter(Boolean)),
   ];
 
+  console.log("Phase 3/4: updating ASN and IP location cache.");
   const previousCache = await readJsonFile(IP_CACHE_FILE, {});
   const enrichment = await enrichIpCache(uniqueIps, previousCache);
 
@@ -477,6 +526,8 @@ async function main() {
       );
     },
   );
+
+  console.log("Phase 4/4: comparing the historical archive.");
 
   const legacyComparison = buildOldServers({
     archive: Array.isArray(legacyData.servers) ? legacyData.servers : [],
@@ -527,6 +578,7 @@ async function main() {
     regions: buildRegions(regionResults, servers),
     servers,
     oldServers,
+    legacyComparisonPending: false,
   };
 
   await mkdir(dirname(OUTPUT_FILE), { recursive: true });
@@ -542,7 +594,7 @@ async function main() {
       + `${legacyComparison.matchedLiveCount} historical entries live now.`,
   );
   console.log(
-    `IP API calls: ${enrichment.queried}; succeeded: ${enrichment.succeeded}.`,
+    `IP API calls: ${enrichment.requested}; succeeded: ${enrichment.succeeded}; deferred: ${enrichment.deferred}.`,
   );
 }
 

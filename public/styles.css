@@ -10,11 +10,11 @@
   --red:#ff7b86;
   --shadow:0 18px 48px rgba(0,0,0,.25);
   --radius:clamp(14px,.8vw,20px);
-  --page-gap:clamp(12px,1.35vw,30px);
+  --page-gap:clamp(10px,1vw,22px);
   --content-max:2460px;
-  --control-height:44px;
-  --body-size:clamp(13px,.68vw,16px);
-  --small-size:clamp(11px,.58vw,14px);
+  --control-height:40px;
+  --body-size:clamp(12.5px,.56vw,14.5px);
+  --small-size:clamp(10.5px,.5vw,13px);
 }
 *{box-sizing:border-box}
 html{
@@ -52,15 +52,16 @@ button{touch-action:manipulation}
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
   align-items:end;
-  gap:clamp(18px,2vw,42px);
-  margin-bottom:clamp(16px,1.5vw,28px);
+  gap:clamp(14px,1.4vw,28px);
+  margin-bottom:clamp(12px,1vw,20px);
 }
 h1{
   margin:0;
-  font-size:clamp(2.4rem,4.7vw,6.8rem);
-  line-height:.9;
-  letter-spacing:-.06em;
-  text-wrap:balance;
+  max-width:100%;
+  font-size:clamp(2rem,3.15vw,4.85rem);
+  line-height:.96;
+  letter-spacing:-.05em;
+  white-space:nowrap;
 }
 h2{margin:0}
 .subtitle{
@@ -95,8 +96,8 @@ h2{margin:0}
 .stats{
   display:grid;
   grid-template-columns:repeat(6,minmax(0,1fr));
-  gap:clamp(8px,.7vw,14px);
-  margin:clamp(16px,1.4vw,26px) 0;
+  gap:clamp(7px,.5vw,11px);
+  margin:clamp(12px,.9vw,18px) 0;
 }
 .stat,.panel{
   background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
@@ -106,7 +107,7 @@ h2{margin:0}
 }
 .stat{
   min-width:0;
-  padding:clamp(13px,.95vw,22px);
+  padding:clamp(11px,.7vw,16px);
 }
 .stat small{
   display:block;
@@ -119,7 +120,7 @@ h2{margin:0}
 .stat strong{
   display:block;
   margin-top:clamp(6px,.45vw,10px);
-  font-size:clamp(1.45rem,1.55vw,2.55rem);
+  font-size:clamp(1.3rem,1.15vw,2rem);
   line-height:1;
   font-variant-numeric:tabular-nums;
 }
@@ -130,8 +131,8 @@ h2{margin:0}
   position:sticky;
   top:max(8px,env(safe-area-inset-top));
   z-index:20;
-  padding:clamp(9px,.7vw,13px);
-  margin:clamp(16px,1.3vw,24px) 0 14px;
+  padding:clamp(8px,.5vw,10px);
+  margin:clamp(12px,.9vw,17px) 0 12px;
   border:1px solid var(--line);
   border-radius:15px;
   background:rgba(8,16,29,.9);
@@ -182,13 +183,13 @@ input:focus,select:focus{
   grid-template-columns:auto minmax(0,1fr) auto;
   gap:clamp(11px,.8vw,16px);
   align-items:center;
-  padding:clamp(14px,1vw,21px);
+  padding:clamp(11px,.7vw,16px);
   cursor:pointer;
   user-select:none;
 }
 .region-code{
-  min-width:clamp(52px,3vw,68px);
-  height:clamp(52px,3vw,68px);
+  min-width:clamp(46px,2.25vw,58px);
+  height:clamp(46px,2.25vw,58px);
   padding-inline:10px;
   display:grid;
   place-items:center;
@@ -204,12 +205,12 @@ input:focus,select:focus{
   border-color:rgba(255,123,134,.22);
 }
 .region-head h2{
-  font-size:clamp(1.08rem,1vw,1.55rem);
+  font-size:clamp(1rem,.78vw,1.3rem);
 }
 .region-meta{
   color:var(--muted);
   margin-top:3px;
-  font-size:clamp(.82rem,.67vw,1rem);
+  font-size:clamp(.76rem,.56vw,.9rem);
 }
 .chevron{
   color:var(--muted);
@@ -233,7 +234,7 @@ input:focus,select:focus{
   justify-content:space-between;
   gap:12px;
   align-items:center;
-  padding:clamp(11px,.75vw,16px) clamp(13px,1vw,20px);
+  padding:clamp(9px,.55vw,12px) clamp(11px,.75vw,16px);
   background:rgba(255,255,255,.018);
 }
 .pool-name{font-weight:850}
@@ -252,7 +253,7 @@ table{
   min-width:1040px;
   border-collapse:collapse;
   table-layout:fixed;
-  font-size:clamp(11px,.64vw,14px);
+  font-size:clamp(10.5px,.52vw,12.8px);
 }
 col:nth-child(1){width:18%}
 col:nth-child(2){width:17%}
@@ -261,7 +262,7 @@ col:nth-child(4){width:8%}
 col:nth-child(5){width:23%}
 col:nth-child(6){width:22%}
 th,td{
-  padding:clamp(8px,.58vw,14px);
+  padding:clamp(7px,.42vw,10px);
   border-bottom:1px solid var(--line);
   text-align:left;
   vertical-align:top;
@@ -340,34 +341,65 @@ code{
 /* 4K и крупные ультраширокие экраны */
 @media (min-width:2560px){
   :root{
-    --content-max:2720px;
-    --control-height:50px;
-    --body-size:17px;
+    --content-max:2440px;
+    --control-height:42px;
+    --body-size:14px;
   }
-  .page-shell{padding-inline:clamp(36px,2vw,70px)}
-  .stats{gap:18px}
-  .controls{grid-template-columns:minmax(560px,2.4fr) repeat(2,minmax(230px,.8fr)) auto}
+  .page-shell{padding-inline:clamp(28px,1.5vw,52px)}
+  h1{font-size:4.75rem}
+  .stats{gap:12px}
+  .stat{padding:15px 17px}
+  .stat strong{font-size:2rem}
+  .controls{
+    grid-template-columns:minmax(520px,2.4fr) repeat(2,minmax(205px,.8fr)) auto;
+  }
   table{
     min-width:0;
-    font-size:15px;
+    font-size:12.5px;
   }
-  th,td{padding:15px 18px}
+  th,td{padding:10px 12px}
 }
 
 /* 2K: 2560×1440 и близкие */
 @media (min-width:2000px) and (max-width:2559px){
   :root{
-    --content-max:2380px;
-    --body-size:15px;
+    --content-max:2180px;
+    --control-height:40px;
+    --body-size:13px;
   }
-  .controls{grid-template-columns:minmax(500px,2.3fr) repeat(2,minmax(210px,.8fr)) auto}
-  table{min-width:0}
+  .page-shell{padding-inline:24px}
+  h1{font-size:4.15rem}
+  .subtitle{font-size:.92rem}
+  .stats{gap:9px}
+  .stat{padding:12px 14px}
+  .stat strong{font-size:1.7rem}
+  .controls{
+    grid-template-columns:minmax(470px,2.3fr) repeat(2,minmax(190px,.8fr)) auto;
+  }
+  .region-code{
+    min-width:52px;
+    height:52px;
+  }
+  table{
+    min-width:0;
+    font-size:12px;
+  }
+  th,td{padding:8px 10px}
 }
 
 /* Full HD и широкие рабочие экраны */
 @media (min-width:1600px) and (max-width:1999px){
-  :root{--content-max:1840px}
-  table{min-width:0}
+  :root{
+    --content-max:1740px;
+    --body-size:13px;
+  }
+  h1{font-size:3.7rem}
+  .stat{padding:12px 14px}
+  .stat strong{font-size:1.65rem}
+  table{
+    min-width:0;
+    font-size:11.5px;
+  }
 }
 
 /* 1366–1599: ноутбуки и компактный desktop */
@@ -456,7 +488,7 @@ code{
     grid-template-columns:1fr;
     align-items:start;
   }
-  h1{font-size:clamp(2.25rem,15vw,4.2rem)}
+  h1{font-size:clamp(1.7rem,8.8vw,3.15rem)}
   .actions{
     width:100%;
     display:grid;
@@ -541,7 +573,7 @@ code{
 /* Низкие экраны, например 1366×768 */
 @media (max-height:800px) and (min-width:1024px){
   .page-shell{padding-top:16px}
-  h1{font-size:clamp(2.5rem,4vw,4.8rem)}
+  h1{font-size:clamp(2.25rem,3.2vw,3.6rem)}
   .hero{margin-bottom:12px}
   .stats{margin:12px 0}
   .stat{padding:12px 14px}
@@ -552,12 +584,24 @@ code{
 /* Альбомная ориентация телефона */
 @media (max-height:520px) and (orientation:landscape){
   .hero{grid-template-columns:minmax(0,1fr) auto}
-  h1{font-size:2.7rem}
+  h1{font-size:2.25rem}
   .actions{
     width:auto;
     display:flex;
   }
   .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+
+/* Дополнительное уплотнение для 2K при масштабировании ОС 100–125% */
+@media (min-width:2200px) and (max-height:1550px){
+  .hero{margin-bottom:12px}
+  .subtitle{margin-top:8px}
+  .stats{margin:11px 0}
+  .controls{margin:11px 0}
+  .region-card{margin-bottom:10px}
+  .region-head{padding-block:10px}
+  .pool-head{padding-block:8px}
 }
 
 @media (prefers-reduced-motion:reduce){

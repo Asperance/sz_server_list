@@ -3,8 +3,7 @@ name: Update server list and deploy Pages
 on:
   workflow_dispatch:
   schedule:
-    - cron: "7,22,37,52 * * * *"
-
+    - cron: "7 0,12 * * *"
 permissions:
   contents: write
   pages: write

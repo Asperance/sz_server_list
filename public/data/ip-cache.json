@@ -1,1 +1,731 @@
-{}
+{
+  "85.119.149.8": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:49.908Z"
+  },
+  "85.119.149.7": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:49.917Z"
+  },
+  "95.213.255.12": {
+    "asn": "AS50340",
+    "operator": "Selectel Spb",
+    "city": "Санкт-Петербург",
+    "region": "Санкт-Петербург",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:49.929Z"
+  },
+  "85.119.149.25": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:49.931Z"
+  },
+  "85.119.149.9": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:49.931Z"
+  },
+  "85.119.149.41": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:49.936Z"
+  },
+  "176.114.88.147": {
+    "asn": "AS50340",
+    "operator": "JSC Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:49.940Z"
+  },
+  "85.119.149.10": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:49.941Z"
+  },
+  "85.119.149.46": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.016Z"
+  },
+  "85.119.149.60": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.027Z"
+  },
+  "85.119.149.119": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.035Z"
+  },
+  "85.119.149.134": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.037Z"
+  },
+  "85.119.149.201": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.039Z"
+  },
+  "85.119.149.152": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.042Z"
+  },
+  "85.119.149.184": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.046Z"
+  },
+  "85.119.149.90": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.049Z"
+  },
+  "85.119.149.123": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.125Z"
+  },
+  "85.119.149.212": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.138Z"
+  },
+  "95.213.255.22": {
+    "asn": "AS50340",
+    "operator": "Selectel Spb",
+    "city": "Санкт-Петербург",
+    "region": "Санкт-Петербург",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.145Z"
+  },
+  "85.119.149.216": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.145Z"
+  },
+  "85.119.149.217": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.147Z"
+  },
+  "85.119.149.214": {
+    "asn": "AS50340",
+    "operator": "Selectel",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.147Z"
+  },
+  "111.88.96.18": {
+    "asn": "AS50340",
+    "operator": "Selectel Network",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.150Z"
+  },
+  "111.88.96.19": {
+    "asn": "AS50340",
+    "operator": "Selectel Network",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.153Z"
+  },
+  "111.88.96.20": {
+    "asn": "AS50340",
+    "operator": "Selectel Network",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.231Z"
+  },
+  "94.26.255.71": {
+    "asn": "AS49505",
+    "operator": "Selectel Network",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.242Z"
+  },
+  "94.26.255.68": {
+    "asn": "AS49505",
+    "operator": "Selectel Network",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.245Z"
+  },
+  "82.148.1.195": {
+    "asn": "AS43647",
+    "operator": "SERVERCORE CIS LLC",
+    "city": "Ташкент",
+    "region": "Ташкент",
+    "country": "Узбекистан",
+    "countryCode": "UZ",
+    "updatedAt": "2026-07-18T12:36:50.250Z"
+  },
+  "94.26.255.72": {
+    "asn": "AS49505",
+    "operator": "Selectel Network",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.252Z"
+  },
+  "94.26.255.69": {
+    "asn": "AS49505",
+    "operator": "Selectel Network",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.252Z"
+  },
+  "92.255.62.130": {
+    "asn": "AS61976",
+    "operator": "SELECTEL-NET",
+    "city": "Новосибирск",
+    "region": "Новосибирская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.256Z"
+  },
+  "94.26.255.70": {
+    "asn": "AS49505",
+    "operator": "Selectel Network",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.256Z"
+  },
+  "79.127.249.87": {
+    "asn": "AS60068",
+    "operator": "CDN77-STO",
+    "city": "Стокгольм",
+    "region": "Стокгольм",
+    "country": "Швеция",
+    "countryCode": "SE",
+    "updatedAt": "2026-07-18T12:36:50.339Z"
+  },
+  "5.188.35.24": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Екатеринбург",
+    "region": "Свердловская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.341Z"
+  },
+  "79.127.249.102": {
+    "asn": "AS60068",
+    "operator": "CDN77-STO",
+    "city": "Стокгольм",
+    "region": "Стокгольм",
+    "country": "Швеция",
+    "countryCode": "SE",
+    "updatedAt": "2026-07-18T12:36:50.350Z"
+  },
+  "5.188.35.74": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Екатеринбург",
+    "region": "Свердловская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.354Z"
+  },
+  "5.188.35.50": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Екатеринбург",
+    "region": "Свердловская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.355Z"
+  },
+  "5.188.35.76": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Екатеринбург",
+    "region": "Свердловская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.356Z"
+  },
+  "5.188.35.49": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Екатеринбург",
+    "region": "Свердловская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.364Z"
+  },
+  "5.188.35.82": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Екатеринбург",
+    "region": "Свердловская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.409Z"
+  },
+  "5.188.35.158": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Екатеринбург",
+    "region": "Свердловская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.448Z"
+  },
+  "5.188.35.103": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Екатеринбург",
+    "region": "Свердловская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.450Z"
+  },
+  "146.185.196.116": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.456Z"
+  },
+  "146.185.196.72": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.460Z"
+  },
+  "146.185.197.17": {
+    "asn": "AS210756",
+    "operator": "Edgecenter Customer Assignment",
+    "city": "Муниципальное образование «город Ростов-на-Дону»",
+    "region": "Ростовская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.462Z"
+  },
+  "146.185.196.120": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.466Z"
+  },
+  "146.185.197.138": {
+    "asn": "AS210756",
+    "operator": "Edgecenter Customer Assignment",
+    "city": "Муниципальное образование «город Ростов-на-Дону»",
+    "region": "Ростовская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.471Z"
+  },
+  "146.185.197.139": {
+    "asn": "AS210756",
+    "operator": "Edgecenter Customer Assignment",
+    "city": "Муниципальное образование «город Ростов-на-Дону»",
+    "region": "Ростовская область",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.516Z"
+  },
+  "5.189.201.141": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Красноярск",
+    "region": "Красноярский край",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.542Z"
+  },
+  "5.189.201.213": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Красноярск",
+    "region": "Красноярский край",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.558Z"
+  },
+  "5.188.37.210": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Хабаровск",
+    "region": "Хабаровский край",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.567Z"
+  },
+  "5.188.39.164": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Хабаровск",
+    "region": "Хабаровский край",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.570Z"
+  },
+  "188.94.156.24": {
+    "asn": "AS212189",
+    "operator": "IT-GRAD TOO",
+    "city": "Алма-Ата",
+    "region": "Алма-Ата",
+    "country": "Казахстан",
+    "countryCode": "KZ",
+    "updatedAt": "2026-07-18T12:36:50.573Z"
+  },
+  "188.94.156.211": {
+    "asn": "AS212189",
+    "operator": "IT-GRAD TOO",
+    "city": "Алма-Ата",
+    "region": "Алма-Ата",
+    "country": "Казахстан",
+    "countryCode": "KZ",
+    "updatedAt": "2026-07-18T12:36:50.579Z"
+  },
+  "89.222.108.193": {
+    "asn": "AS60068",
+    "operator": "CDN77-FRA",
+    "city": "Франкфурт-на-Майне",
+    "region": "Гессен",
+    "country": "Германия",
+    "countryCode": "DE",
+    "updatedAt": "2026-07-18T12:36:50.614Z"
+  },
+  "79.127.241.67": {
+    "asn": "AS60068",
+    "operator": "CDN77-FRA",
+    "city": "Франкфурт-на-Майне",
+    "region": "Гессен",
+    "country": "Германия",
+    "countryCode": "DE",
+    "updatedAt": "2026-07-18T12:36:50.639Z"
+  },
+  "79.127.241.69": {
+    "asn": "AS60068",
+    "operator": "CDN77-FRA",
+    "city": "Франкфурт-на-Майне",
+    "region": "Гессен",
+    "country": "Германия",
+    "countryCode": "DE",
+    "updatedAt": "2026-07-18T12:36:50.663Z"
+  },
+  "79.127.241.68": {
+    "asn": "AS60068",
+    "operator": "CDN77-FRA",
+    "city": "Франкфурт-на-Майне",
+    "region": "Гессен",
+    "country": "Германия",
+    "countryCode": "DE",
+    "updatedAt": "2026-07-18T12:36:50.664Z"
+  },
+  "111.88.96.28": {
+    "asn": "AS50340",
+    "operator": "Selectel Network",
+    "city": "Москва",
+    "region": "Москва",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.675Z"
+  },
+  "152.233.7.41": {
+    "asn": "AS60068",
+    "operator": "CDN77-FRA",
+    "city": "Франкфурт-на-Майне",
+    "region": "Гессен",
+    "country": "Германия",
+    "countryCode": "DE",
+    "updatedAt": "2026-07-18T12:36:50.679Z"
+  },
+  "152.233.7.40": {
+    "asn": "AS60068",
+    "operator": "CDN77-FRA",
+    "city": "Франкфурт-на-Майне",
+    "region": "Гессен",
+    "country": "Германия",
+    "countryCode": "DE",
+    "updatedAt": "2026-07-18T12:36:50.680Z"
+  },
+  "89.187.175.135": {
+    "asn": "AS60068",
+    "operator": "CDN77-DAL",
+    "city": "Даллас",
+    "region": "Техас",
+    "country": "США",
+    "countryCode": "US",
+    "updatedAt": "2026-07-18T12:36:50.720Z"
+  },
+  "89.187.175.102": {
+    "asn": "AS60068",
+    "operator": "CDN77-DAL",
+    "city": "Даллас",
+    "region": "Техас",
+    "country": "США",
+    "countryCode": "US",
+    "updatedAt": "2026-07-18T12:36:50.735Z"
+  },
+  "89.187.179.170": {
+    "asn": "AS60068",
+    "operator": "CDN77-NYC",
+    "city": "Нью-Йорк",
+    "region": "Нью-Йорк",
+    "country": "США",
+    "countryCode": "US",
+    "updatedAt": "2026-07-18T12:36:50.767Z"
+  },
+  "89.187.175.65": {
+    "asn": "AS60068",
+    "operator": "CDN77-DAL",
+    "city": "Даллас",
+    "region": "Техас",
+    "country": "США",
+    "countryCode": "US",
+    "updatedAt": "2026-07-18T12:36:50.768Z"
+  },
+  "143.244.63.114": {
+    "asn": "AS60068",
+    "operator": "CDN77-SYD",
+    "city": "Сидней",
+    "region": "Новый Южный Уэльс",
+    "country": "Австралия",
+    "countryCode": "AU",
+    "updatedAt": "2026-07-18T12:36:50.774Z"
+  },
+  "5.188.37.209": {
+    "asn": "AS210756",
+    "operator": "Edgecenter LLC",
+    "city": "Хабаровск",
+    "region": "Хабаровский край",
+    "country": "Российская Федерация",
+    "countryCode": "RU",
+    "updatedAt": "2026-07-18T12:36:50.779Z"
+  },
+  "89.187.185.94": {
+    "asn": "AS60068",
+    "operator": "CDN77-LAX",
+    "city": "Лос-Анджелес",
+    "region": "Калифорния",
+    "country": "США",
+    "countryCode": "US",
+    "updatedAt": "2026-07-18T12:36:50.783Z"
+  },
+  "89.40.226.42": {
+    "asn": "AS8849",
+    "operator": "Melbicom",
+    "city": "Сингапур",
+    "region": "Central Singapore",
+    "country": "Сингапур",
+    "countryCode": "SG",
+    "updatedAt": "2026-07-18T12:36:50.786Z"
+  },
+  "178.249.213.66": {
+    "asn": "AS60068",
+    "operator": "CDN77-TYO",
+    "city": "Токио",
+    "region": "Токио",
+    "country": "Япония",
+    "countryCode": "JP",
+    "updatedAt": "2026-07-18T12:36:50.828Z"
+  },
+  "178.249.213.194": {
+    "asn": "AS60068",
+    "operator": "CDN77-TYO",
+    "city": "Токио",
+    "region": "Токио",
+    "country": "Япония",
+    "countryCode": "JP",
+    "updatedAt": "2026-07-18T12:36:50.831Z"
+  },
+  "89.222.116.89": {
+    "asn": "AS60068",
+    "operator": "CDN77-SEO",
+    "city": "Сеул",
+    "region": "Сеул",
+    "country": "Южная Корея",
+    "countryCode": "KR",
+    "updatedAt": "2026-07-18T12:36:50.861Z"
+  },
+  "89.222.116.91": {
+    "asn": "AS60068",
+    "operator": "CDN77-SEO",
+    "city": "Сеул",
+    "region": "Сеул",
+    "country": "Южная Корея",
+    "countryCode": "KR",
+    "updatedAt": "2026-07-18T12:36:50.871Z"
+  },
+  "89.222.116.90": {
+    "asn": "AS60068",
+    "operator": "CDN77-SEO",
+    "city": "Сеул",
+    "region": "Сеул",
+    "country": "Южная Корея",
+    "countryCode": "KR",
+    "updatedAt": "2026-07-18T12:36:50.873Z"
+  },
+  "89.222.116.92": {
+    "asn": "AS60068",
+    "operator": "CDN77-SEO",
+    "city": "Сеул",
+    "region": "Сеул",
+    "country": "Южная Корея",
+    "countryCode": "KR",
+    "updatedAt": "2026-07-18T12:36:50.887Z"
+  },
+  "89.222.116.93": {
+    "asn": "AS60068",
+    "operator": "CDN77-SEO",
+    "city": "Сеул",
+    "region": "Сеул",
+    "country": "Южная Корея",
+    "countryCode": "KR",
+    "updatedAt": "2026-07-18T12:36:50.893Z"
+  },
+  "89.222.116.94": {
+    "asn": "AS60068",
+    "operator": "CDN77-SEO",
+    "city": "Сеул",
+    "region": "Сеул",
+    "country": "Южная Корея",
+    "countryCode": "KR",
+    "updatedAt": "2026-07-18T12:36:50.903Z"
+  },
+  "89.222.116.95": {
+    "asn": "AS60068",
+    "operator": "CDN77-SEO",
+    "city": "Сеул",
+    "region": "Сеул",
+    "country": "Южная Корея",
+    "countryCode": "KR",
+    "updatedAt": "2026-07-18T12:36:50.933Z"
+  },
+  "89.222.116.96": {
+    "asn": "AS60068",
+    "operator": "CDN77-SEO",
+    "city": "Сеул",
+    "region": "Сеул",
+    "country": "Южная Корея",
+    "countryCode": "KR",
+    "updatedAt": "2026-07-18T12:36:50.936Z"
+  },
+  "89.222.116.97": {
+    "asn": "AS60068",
+    "operator": "CDN77-SEO",
+    "city": "Сеул",
+    "region": "Сеул",
+    "country": "Южная Корея",
+    "countryCode": "KR",
+    "updatedAt": "2026-07-18T12:36:50.968Z"
+  },
+  "89.222.116.98": {
+    "asn": "AS60068",
+    "operator": "CDN77-SEO",
+    "city": "Сеул",
+    "region": "Сеул",
+    "country": "Южная Корея",
+    "countryCode": "KR",
+    "updatedAt": "2026-07-18T12:36:50.979Z"
+  }
+}

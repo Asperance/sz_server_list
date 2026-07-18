@@ -34,6 +34,7 @@ jobs:
           package-manager-cache: false
 
       - name: Fetch server and network data
+        timeout-minutes: 3
         run: node scripts/fetch-servers.mjs
 
       - name: Save IP metadata cache

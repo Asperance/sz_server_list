@@ -263,7 +263,7 @@ function renderRegions(servers) {
 
     cards.push(`
       <section
-        class="panel region-card open ${availability ? "" : "unavailable"}"
+        class="panel region-card ${availability ? "" : "unavailable"}"
         id="region-${escapeAttribute(region)}"
       >
         <div class="region-head">

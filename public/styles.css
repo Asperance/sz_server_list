@@ -604,6 +604,90 @@ code{
   .pool-head{padding-block:8px}
 }
 
+
+/* Архив адресов, отсутствующих в актуальном списке */
+.legacy-section{
+  margin-top:clamp(18px,1.4vw,28px);
+}
+.legacy-panel{
+  overflow:hidden;
+  box-shadow:none;
+  background:rgba(255,255,255,.018);
+}
+.legacy-summary{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto auto;
+  align-items:center;
+  gap:10px;
+  min-height:48px;
+  padding:10px 14px;
+  cursor:pointer;
+  list-style:none;
+  user-select:none;
+}
+.legacy-summary::-webkit-details-marker{display:none}
+.legacy-title{
+  font-weight:800;
+  font-size:clamp(.88rem,.68vw,1rem);
+}
+.legacy-count{
+  color:var(--muted);
+  font-size:clamp(.72rem,.56vw,.86rem);
+  white-space:nowrap;
+}
+.legacy-chevron{
+  color:var(--muted);
+  font-size:1.2rem;
+  transition:transform .2s ease;
+}
+.legacy-panel[open] .legacy-chevron{transform:rotate(180deg)}
+.legacy-content{
+  border-top:1px solid var(--line);
+}
+.legacy-note{
+  margin:0;
+  padding:10px 14px;
+  color:var(--muted);
+  font-size:clamp(.74rem,.56vw,.86rem);
+  background:rgba(255,255,255,.014);
+}
+.legacy-table{
+  min-width:900px;
+}
+.legacy-table col:nth-child(1){width:19%}
+.legacy-table col:nth-child(2){width:20%}
+.legacy-table col:nth-child(3){width:15%}
+.legacy-table col:nth-child(4){width:24%}
+.legacy-table col:nth-child(5){width:22%}
+.legacy-empty{
+  padding:22px!important;
+  text-align:center;
+  color:var(--muted);
+}
+
+@media (min-width:1600px){
+  .legacy-table{min-width:0}
+}
+
+@media (max-width:1023px){
+  .legacy-table{min-width:0}
+  .legacy-table tbody{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    padding:10px;
+  }
+}
+
+@media (max-width:767px){
+  .legacy-summary{
+    grid-template-columns:minmax(0,1fr) auto auto;
+    padding:10px 12px;
+  }
+  .legacy-table tbody{grid-template-columns:1fr}
+  .legacy-note{padding-inline:12px}
+}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{

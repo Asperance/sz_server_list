@@ -33,6 +33,7 @@ const SOURCES = [
 
 const OUTPUT_FILE = resolve("public/data/servers.json");
 const IP_CACHE_FILE = resolve("public/data/ip-cache.json");
+const LEGACY_FILE = resolve("scripts/legacy-servers.json");
 
 const SOURCE_TIMEOUT_MS = 25_000;
 const LOOKUP_TIMEOUT_MS = 15_000;
@@ -83,7 +84,7 @@ async function fetchRegion(source) {
       method: "GET",
       headers: {
         Accept: "application/json",
-        "User-Agent": "Server-Directory-GitHub-Pages/2.0",
+        "User-Agent": "Stalzone-Serverlist-GitHub-Pages/3.0",
       },
       cache: "no-store",
       redirect: "follow",
@@ -210,7 +211,7 @@ async function lookupIp(ip) {
       {
         headers: {
           Accept: "application/json",
-          "User-Agent": "Server-Directory-GitHub-Pages/2.0",
+          "User-Agent": "Stalzone-Serverlist-GitHub-Pages/3.0",
         },
         cache: "no-store",
         signal: controller.signal,
@@ -259,10 +260,8 @@ async function enrichIpCache(ips, oldCache) {
         console.log(`[IP OK] ${ip}: ${cache[ip].asn} ${cache[ip].operator}`);
       } catch (error) {
         console.error(`[IP ERROR] ${ip}: ${error?.message ?? error}`);
-        // Если старая запись существует, оставляем её в кэше.
       }
 
-      // Небольшая пауза снижает пиковую нагрузку на бесплатный API.
       await new Promise((resolve) => setTimeout(resolve, 150));
     }
   }
@@ -297,6 +296,102 @@ function attachNetworkData(servers, cache) {
   });
 }
 
+function normalizeText(value) {
+  return String(value ?? "").trim().toUpperCase();
+}
+
+function normalizeAddress(value) {
+  return String(value ?? "").trim().toLowerCase();
+}
+
+function legacyIdentity(server) {
+  return `${normalizeText(server.region)}|${normalizeText(server.name)}|${normalizeAddress(server.address)}`;
+}
+
+function buildOldServers({ archive, servers, regionResults, previousOldServers }) {
+  const availableRegions = new Set(
+    regionResults
+      .filter((region) => region.available)
+      .map((region) => region.region),
+  );
+
+  const liveAddresses = new Set(
+    servers.map((server) => normalizeAddress(server.address)).filter(Boolean),
+  );
+  const liveNames = new Set(
+    servers.map(
+      (server) => `${normalizeText(server.region)}|${normalizeText(server.name)}`,
+    ),
+  );
+  const previousOldKeys = new Set(
+    (previousOldServers || []).map(legacyIdentity),
+  );
+
+  const oldServers = [];
+  let matchedLiveCount = 0;
+  let deferredCount = 0;
+
+  for (const archived of archive) {
+    const region = normalizeText(archived.region);
+    const addressMatch = liveAddresses.has(normalizeAddress(archived.address));
+    const nameMatch = liveNames.has(
+      `${region}|${normalizeText(archived.name)}`,
+    );
+
+    if (availableRegions.has(region)) {
+      if (addressMatch || nameMatch) {
+        matchedLiveCount += 1;
+        continue;
+      }
+
+      oldServers.push({ ...archived });
+      continue;
+    }
+
+    // При недоступном регионе сохраняем результат прошлого успешного сравнения.
+    if (previousOldKeys.has(legacyIdentity(archived))) {
+      oldServers.push({ ...archived });
+    } else {
+      deferredCount += 1;
+    }
+  }
+
+  oldServers.sort((left, right) => {
+    const regionDifference =
+      REGION_ORDER.indexOf(left.region) - REGION_ORDER.indexOf(right.region);
+
+    if (regionDifference !== 0) return regionDifference;
+
+    return (
+      left.pool.localeCompare(right.pool, "ru")
+      || left.name.localeCompare(right.name, "ru", { numeric: true })
+      || left.address.localeCompare(right.address, "ru", { numeric: true })
+    );
+  });
+
+  return {
+    oldServers,
+    matchedLiveCount,
+    deferredCount,
+  };
+}
+
+function mergeOldServerNetworkData(oldServers, cache) {
+  return oldServers.map((server) => {
+    const network = cache[server.ip] || {};
+
+    return {
+      ...server,
+      asn: server.asn || network.asn || "",
+      operator: server.operator || network.operator || "",
+      city: server.city || network.city || "",
+      administrativeRegion: network.region || "",
+      country: server.country || network.country || "",
+      countryCode: network.countryCode || "",
+    };
+  });
+}
+
 function buildRegions(regionResults, servers) {
   const regions = {};
 
@@ -325,7 +420,11 @@ function buildRegions(regionResults, servers) {
 async function main() {
   const generatedAt = new Date().toISOString();
 
-  const regionResults = await Promise.all(SOURCES.map(fetchRegion));
+  const [regionResults, legacyData, previousPayload] = await Promise.all([
+    Promise.all(SOURCES.map(fetchRegion)),
+    readJsonFile(LEGACY_FILE, { servers: [] }),
+    readJsonFile(OUTPUT_FILE, { oldServers: [] }),
+  ]);
   const availableRegions = regionResults.filter((region) => region.available);
 
   for (const region of regionResults) {
@@ -379,8 +478,19 @@ async function main() {
     },
   );
 
+  const legacyComparison = buildOldServers({
+    archive: Array.isArray(legacyData.servers) ? legacyData.servers : [],
+    servers,
+    regionResults,
+    previousOldServers: previousPayload.oldServers,
+  });
+  const oldServers = mergeOldServerNetworkData(
+    legacyComparison.oldServers,
+    enrichment.cache,
+  );
+
   const payload = {
-    schemaVersion: 2,
+    schemaVersion: 3,
     generatedAt,
     complete: availableRegions.length === SOURCES.length,
     regionOrder: REGION_ORDER,
@@ -407,9 +517,16 @@ async function main() {
           )
           .map((server) => server.ip),
       ).size,
+      historicalArchiveCount: Array.isArray(legacyData.servers)
+        ? legacyData.servers.length
+        : 0,
+      oldServerCount: oldServers.length,
+      historicalServersLiveNow: legacyComparison.matchedLiveCount,
+      historicalComparisonDeferred: legacyComparison.deferredCount,
     },
     regions: buildRegions(regionResults, servers),
     servers,
+    oldServers,
   };
 
   await mkdir(dirname(OUTPUT_FILE), { recursive: true });
@@ -420,9 +537,9 @@ async function main() {
   );
 
   console.log(
-    `Wrote ${OUTPUT_FILE}: ${servers.length} tunnels, `
-      + `${payload.summary.uniqueIpCount} unique IPs, `
-      + `${payload.summary.networkInfoCount} IPs with network metadata.`,
+    `Wrote ${OUTPUT_FILE}: ${servers.length} live tunnels, `
+      + `${oldServers.length} old servers, `
+      + `${legacyComparison.matchedLiveCount} historical entries live now.`,
   );
   console.log(
     `IP API calls: ${enrichment.queried}; succeeded: ${enrichment.succeeded}.`,

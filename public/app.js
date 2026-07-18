@@ -94,6 +94,7 @@ function rebuild() {
 
   visibleServers = applyFilters(database.servers);
   renderRegions(visibleServers);
+  renderLegacyServers(database.oldServers || []);
 }
 
 function renderStats() {
@@ -294,12 +295,7 @@ function renderRegions(servers) {
     });
   });
 
-  document.querySelectorAll("[data-copy]").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.stopPropagation();
-      copyText(button.dataset.copy, "Адрес скопирован");
-    });
-  });
+  bindCopyButtons($("regions"));
 }
 
 function serverRow(server) {
@@ -345,6 +341,126 @@ function serverRow(server) {
       <td data-label="Город / страна">${locationCell}</td>
     </tr>
   `;
+}
+
+
+function renderLegacyServers(oldServers) {
+  const container = $("legacyServers");
+  if (!container) return;
+
+  const servers = Array.isArray(oldServers) ? oldServers : [];
+  const countLabel = `${servers.length} ${pluralizeServers(servers.length)}`;
+
+  const rows = servers.length
+    ? servers.map(legacyServerRow).join("")
+    : `
+        <tr>
+          <td colspan="5" class="legacy-empty">
+            Все известные исторические адреса сейчас присутствуют в актуальном списке.
+          </td>
+        </tr>
+      `;
+
+  container.innerHTML = `
+    <details class="panel legacy-panel">
+      <summary class="legacy-summary">
+        <span class="legacy-title">Старые серверы</span>
+        <span class="legacy-count">${escapeHtml(countLabel)}</span>
+        <span class="legacy-chevron" aria-hidden="true">⌄</span>
+      </summary>
+
+      <div class="legacy-content">
+        <p class="legacy-note">
+          Исторические адреса, которых нет в последнем актуальном списке. Если сервер снова появляется, он автоматически удаляется из этого раздела.
+        </p>
+
+        <div class="table-wrap">
+          <table class="legacy-table">
+            <colgroup><col><col><col><col><col></colgroup>
+            <thead>
+              <tr>
+                <th>Сервер</th>
+                <th>Адрес</th>
+                <th>Регион / пул</th>
+                <th>ASN / оператор</th>
+                <th>Город / страна</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+  `;
+
+  bindCopyButtons(container);
+}
+
+function legacyServerRow(server) {
+  const networkCell = server.asn || server.operator
+    ? `
+        <strong>${escapeHtml(server.asn || "—")}</strong>
+        <div class="muted">${escapeHtml(server.operator || "—")}</div>
+      `
+    : `<span class="muted">—</span>`;
+
+  const locationParts = [
+    server.city,
+    server.administrativeRegion && server.administrativeRegion !== server.city
+      ? server.administrativeRegion
+      : "",
+  ].filter(Boolean);
+
+  const locationCell = locationParts.length || server.country
+    ? `
+        <strong>${escapeHtml(locationParts.join(", ") || "—")}</strong>
+        <div class="muted">${escapeHtml(server.country || "—")}</div>
+      `
+    : `<span class="muted">—</span>`;
+
+  return `
+    <tr>
+      <td data-label="Сервер"><strong>${escapeHtml(server.name)}</strong></td>
+      <td data-label="Адрес">
+        <code>${escapeHtml(server.address)}</code>
+        <button
+          class="copy"
+          data-copy="${escapeAttribute(server.address)}"
+          type="button"
+          aria-label="Копировать адрес"
+        >⧉</button>
+      </td>
+      <td data-label="Регион / пул">
+        <strong>${escapeHtml(server.region || "—")}</strong>
+        <div class="muted">${escapeHtml(server.pool || "—")}</div>
+      </td>
+      <td data-label="ASN / оператор">${networkCell}</td>
+      <td data-label="Город / страна">${locationCell}</td>
+    </tr>
+  `;
+}
+
+function pluralizeServers(count) {
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+
+  if (mod10 === 1 && mod100 !== 11) return "сервер";
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) {
+    return "сервера";
+  }
+  return "серверов";
+}
+
+function bindCopyButtons(root = document) {
+  root.querySelectorAll("[data-copy]").forEach((button) => {
+    if (button.dataset.copyBound === "true") return;
+    button.dataset.copyBound = "true";
+
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      copyText(button.dataset.copy, "Адрес скопирован");
+    });
+  });
 }
 
 function download(name, text, type) {

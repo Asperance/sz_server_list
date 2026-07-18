@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "generatedAt": null,
   "complete": false,
   "regionOrder": [
@@ -16,7 +16,11 @@
     "poolCount": 0,
     "tunnelCount": 0,
     "uniqueIpCount": 0,
-    "networkInfoCount": 0
+    "networkInfoCount": 0,
+    "historicalArchiveCount": 99,
+    "oldServerCount": 0,
+    "historicalServersLiveNow": 0,
+    "historicalComparisonDeferred": 99
   },
   "regions": {
     "RU": {
@@ -65,5 +69,6 @@
       "uniqueIpCount": 0
     }
   },
-  "servers": []
+  "servers": [],
+  "oldServers": []
 }

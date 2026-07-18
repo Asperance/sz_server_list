@@ -4,21 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Актуальный список серверов STALZONE по регионам">
-  <title>STALZONE — Server Directory</title>
+  <meta name="theme-color" content="#08101d">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="description" content="Актуальный список игровых серверов по регионам">
+  <title>Server Directory</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+<div class="page-shell">
 <div class="container">
   <header class="hero">
     <div>
-      <h1>STALZONE<br>Servers</h1>
-      <p class="subtitle">Актуальный список игровых туннелей по регионам.</p>
+      <h1>Server<br>Directory</h1>
+      <p class="subtitle">Актуальный список игровых адресов по регионам.</p>
     </div>
 
     <div class="actions">
       <button class="btn primary" id="refreshBtn" type="button">Проверить обновление</button>
-      <button class="btn" id="whoisBtn" type="button">Загрузить IP-данные</button>
       <button class="btn" id="exportJsonBtn" type="button">JSON</button>
       <button class="btn" id="exportCsvBtn" type="button">CSV</button>
     </div>
@@ -26,11 +28,11 @@
 
   <section class="stats">
     <article class="stat">
-      <small>Endpoint’ов online</small>
-      <strong id="statEndpoints">—</strong>
+      <small>Доступно регионов</small>
+      <strong id="statAvailable">—</strong>
     </article>
     <article class="stat">
-      <small>Регионов</small>
+      <small>Всего регионов</small>
       <strong id="statRegions">—</strong>
     </article>
     <article class="stat">
@@ -38,12 +40,12 @@
       <strong id="statPools">—</strong>
     </article>
     <article class="stat">
-      <small>Туннелей</small>
+      <small>Серверов</small>
       <strong id="statTunnels">—</strong>
     </article>
     <article class="stat">
-      <small>Уникальных IP</small>
-      <strong id="statIps">—</strong>
+      <small>IP с сетью</small>
+      <strong id="statNetwork">—</strong>
     </article>
     <article class="stat">
       <small>Обновлено</small>
@@ -51,24 +53,19 @@
     </article>
   </section>
 
-  <section class="endpoint-grid" id="endpointGrid"></section>
-
   <section class="controls">
     <input
       class="wide"
       id="search"
       type="search"
       autocomplete="off"
-      placeholder="Поиск: сервер, IP, пул, ASN, оператор, город…"
+      placeholder="Поиск: сервер, IP, пул, ASN, оператор, город, страна…"
     >
     <select id="regionFilter">
       <option value="">Все регионы</option>
     </select>
     <select id="poolFilter">
       <option value="">Все пулы</option>
-    </select>
-    <select id="endpointFilter">
-      <option value="">Все endpoint’ы</option>
     </select>
     <button class="btn" id="copyVisibleBtn" type="button">Копировать IP</button>
   </section>
@@ -79,8 +76,9 @@
   </main>
 
   <footer class="footer">
-    Источник — последние ответы региональных endpoint’ов, полученные GitHub Actions.
+    Список обновляется автоматически. Город определяется приблизительно по данным IP-геолокации.
   </footer>
+</div>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite">Готово</div>

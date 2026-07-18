@@ -1,18 +1,69 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "generatedAt": null,
-  "loginParameter": "Hi",
   "complete": false,
+  "regionOrder": [
+    "RU",
+    "EU",
+    "NA",
+    "SEA",
+    "NEA"
+  ],
   "summary": {
-    "endpointTotal": 5,
-    "endpointOnline": 0,
-    "endpointFailed": 5,
-    "regionCount": 0,
+    "regionTotal": 5,
+    "regionAvailable": 0,
+    "regionUnavailable": 5,
     "poolCount": 0,
     "tunnelCount": 0,
-    "uniqueIpCount": 0
+    "uniqueIpCount": 0,
+    "networkInfoCount": 0
   },
-  "endpoints": [],
-  "regions": {},
+  "regions": {
+    "RU": {
+      "code": "RU",
+      "label": "Россия",
+      "available": false,
+      "error": null,
+      "poolCount": 0,
+      "tunnelCount": 0,
+      "uniqueIpCount": 0
+    },
+    "EU": {
+      "code": "EU",
+      "label": "Европа",
+      "available": false,
+      "error": null,
+      "poolCount": 0,
+      "tunnelCount": 0,
+      "uniqueIpCount": 0
+    },
+    "NA": {
+      "code": "NA",
+      "label": "Америка",
+      "available": false,
+      "error": null,
+      "poolCount": 0,
+      "tunnelCount": 0,
+      "uniqueIpCount": 0
+    },
+    "SEA": {
+      "code": "SEA",
+      "label": "Юго-Восточная Азия",
+      "available": false,
+      "error": null,
+      "poolCount": 0,
+      "tunnelCount": 0,
+      "uniqueIpCount": 0
+    },
+    "NEA": {
+      "code": "NEA",
+      "label": "Северо-Восточная Азия",
+      "available": false,
+      "error": null,
+      "poolCount": 0,
+      "tunnelCount": 0,
+      "uniqueIpCount": 0
+    }
+  },
   "servers": []
 }

@@ -1,11 +1,9 @@
 const DATA_URL = "./data/servers.json";
-const WHOIS_CACHE_KEY = "stalzone-pages-whois-v1";
-const REGION_ORDER = ["EU", "NA", "SEA", "NEA", "RU"];
+const DEFAULT_REGION_ORDER = ["RU", "EU", "NA", "SEA", "NEA"];
 
 const $ = (id) => document.getElementById(id);
 
 let database = null;
-let whois = loadWhoisCache();
 let visibleServers = [];
 
 function toast(text) {
@@ -29,23 +27,8 @@ async function copyText(text, message) {
     document.execCommand("copy");
     textarea.remove();
   }
+
   toast(message);
-}
-
-function loadWhoisCache() {
-  try {
-    return JSON.parse(localStorage.getItem(WHOIS_CACHE_KEY) || "{}");
-  } catch {
-    return {};
-  }
-}
-
-function saveWhoisCache() {
-  try {
-    localStorage.setItem(WHOIS_CACHE_KEY, JSON.stringify(whois));
-  } catch {
-    // Local storage can be disabled. The current page still remains usable.
-  }
 }
 
 async function loadDatabase({ notify = false } = {}) {
@@ -63,7 +46,7 @@ async function loadDatabase({ notify = false } = {}) {
     const payload = await response.json();
 
     if (!payload || !Array.isArray(payload.servers)) {
-      throw new Error("Некорректный servers.json");
+      throw new Error("Некорректный файл данных");
     }
 
     database = payload;
@@ -75,20 +58,38 @@ async function loadDatabase({ notify = false } = {}) {
   } catch (error) {
     $("regions").innerHTML = `
       <section class="panel empty">
-        Не удалось загрузить data/servers.json: ${escapeHtml(error.message || error)}
+        Не удалось загрузить список: ${escapeHtml(error.message || error)}
       </section>
     `;
-    if (notify) toast("Ошибка загрузки");
+
+    if (notify) {
+      toast("Ошибка загрузки");
+    }
   } finally {
     $("refreshBtn").disabled = false;
   }
+}
+
+function getRegionOrder() {
+  const configured = Array.isArray(database?.regionOrder)
+    ? database.regionOrder
+    : [];
+
+  const additional = Object.keys(database?.regions || {})
+    .filter((region) => !configured.includes(region))
+    .sort();
+
+  return [
+    ...configured,
+    ...DEFAULT_REGION_ORDER.filter((region) => !configured.includes(region)),
+    ...additional,
+  ].filter((region, index, values) => values.indexOf(region) === index);
 }
 
 function rebuild() {
   if (!database) return;
 
   renderStats();
-  renderEndpoints();
   rebuildFilters();
 
   visibleServers = applyFilters(database.servers);
@@ -98,12 +99,13 @@ function rebuild() {
 function renderStats() {
   const summary = database.summary || {};
 
-  $("statEndpoints").textContent =
-    `${summary.endpointOnline ?? 0}/${summary.endpointTotal ?? 0}`;
-  $("statRegions").textContent = summary.regionCount ?? 0;
+  $("statAvailable").textContent = summary.regionAvailable ?? 0;
+  $("statRegions").textContent = summary.regionTotal ?? 0;
   $("statPools").textContent = summary.poolCount ?? 0;
   $("statTunnels").textContent = summary.tunnelCount ?? 0;
-  $("statIps").textContent = summary.uniqueIpCount ?? 0;
+  $("statNetwork").textContent =
+    `${summary.networkInfoCount ?? 0}/${summary.uniqueIpCount ?? 0}`;
+
   $("statUpdated").textContent = database.generatedAt
     ? new Date(database.generatedAt).toLocaleString("ru-RU", {
         day: "2-digit",
@@ -114,49 +116,27 @@ function renderStats() {
     : "—";
 }
 
-function renderEndpoints() {
-  $("endpointGrid").innerHTML = (database.endpoints || []).map((endpoint) => {
-    const detail = endpoint.ok
-      ? `${endpoint.poolCount} пулов · ${endpoint.tunnelCount} туннелей · ${endpoint.durationMs} мс`
-      : endpoint.error || "Ошибка";
-
-    return `
-      <article class="endpoint">
-        <div class="endpoint-top">
-          <span class="endpoint-name">${escapeHtml(endpoint.label)}</span>
-          <span class="status ${endpoint.ok ? "ok" : "error"}">
-            ${endpoint.ok ? "online" : "ошибка"}
-          </span>
-        </div>
-        <a
-          class="endpoint-url"
-          href="${escapeAttribute(endpoint.url)}"
-          target="_blank"
-          rel="noreferrer"
-        >${escapeHtml(endpoint.url)}</a>
-        <div class="endpoint-detail">${escapeHtml(detail)}</div>
-      </article>
-    `;
-  }).join("");
-}
-
 function rebuildFilters() {
   const previous = {
     region: $("regionFilter").value,
     pool: $("poolFilter").value,
-    endpoint: $("endpointFilter").value,
   };
 
   const servers = database.servers || [];
-  const regions = [...new Set(servers.map((server) => server.region))].sort();
-  const pools = [...new Set(servers.map((server) => server.pool))].sort();
-  const endpoints = [...new Set(servers.map((server) => server.endpointId))].sort();
+  const presentRegions = new Set(servers.map((server) => server.region));
+  const regions = getRegionOrder().filter(
+    (region) => presentRegions.has(region) || database.regions?.[region],
+  );
+  const pools = [...new Set(servers.map((server) => server.pool))].sort(
+    (left, right) => left.localeCompare(right, "ru", { numeric: true }),
+  );
 
   $("regionFilter").innerHTML =
     `<option value="">Все регионы</option>` +
-    regions.map((region) =>
-      `<option value="${escapeAttribute(region)}">${escapeHtml(region)}</option>`
-    ).join("");
+    regions.map((region) => {
+      const label = database.regions?.[region]?.label || region;
+      return `<option value="${escapeAttribute(region)}">${escapeHtml(label)}</option>`;
+    }).join("");
 
   $("poolFilter").innerHTML =
     `<option value="">Все пулы</option>` +
@@ -164,45 +144,34 @@ function rebuildFilters() {
       `<option value="${escapeAttribute(pool)}">${escapeHtml(pool)}</option>`
     ).join("");
 
-  $("endpointFilter").innerHTML =
-    `<option value="">Все endpoint’ы</option>` +
-    endpoints.map((endpoint) =>
-      `<option value="${escapeAttribute(endpoint)}">${escapeHtml(endpoint)}</option>`
-    ).join("");
-
   $("regionFilter").value = previous.region;
   $("poolFilter").value = previous.pool;
-  $("endpointFilter").value = previous.endpoint;
 }
 
 function applyFilters(servers) {
   const query = $("search").value.trim().toLowerCase();
   const region = $("regionFilter").value;
   const pool = $("poolFilter").value;
-  const endpoint = $("endpointFilter").value;
 
   return servers.filter((server) => {
     if (region && server.region !== region) return false;
     if (pool && server.pool !== pool) return false;
-    if (endpoint && server.endpointId !== endpoint) return false;
     if (!query) return true;
-
-    const info = whois[server.ip] || {};
 
     return [
       server.region,
       server.regionLabel,
-      server.endpointId,
-      server.endpoint,
       server.pool,
       server.name,
       server.address,
       server.ip,
       server.port,
-      info.asn,
-      info.org,
-      info.city,
-      info.country,
+      server.asn,
+      server.operator,
+      server.city,
+      server.administrativeRegion,
+      server.country,
+      server.countryCode,
     ].join(" ").toLowerCase().includes(query);
   });
 }
@@ -216,83 +185,108 @@ function renderRegions(servers) {
     grouped[server.region][server.pool].push(server);
   }
 
-  const additionalRegions = Object.keys(grouped)
-    .filter((region) => !REGION_ORDER.includes(region))
-    .sort();
-  const order = [...REGION_ORDER, ...additionalRegions];
+  const hasActiveFilters =
+    Boolean($("search").value.trim())
+    || Boolean($("regionFilter").value)
+    || Boolean($("poolFilter").value);
 
-  $("regionNav").innerHTML = order
-    .filter((region) => grouped[region])
-    .map((region) => {
-      const count = Object.values(grouped[region]).flat().length;
-      return `<a href="#region-${escapeAttribute(region)}">${escapeHtml(region)} · ${count}</a>`;
-    })
-    .join("");
+  const order = getRegionOrder();
 
-  $("regions").innerHTML = order
-    .filter((region) => grouped[region])
-    .map((region) => {
-      const pools = grouped[region];
-      const regionServers = Object.values(pools).flat();
-      const endpoint = database.endpoints.find(
-        (item) => item.region === region,
-      );
-      const regionData = database.regions?.[region];
+  $("regionNav").innerHTML = order.map((region) => {
+    const regionInfo = database.regions?.[region];
+    const count = Object.values(grouped[region] || {}).flat().length;
 
-      return `
-        <section class="panel region-card open" id="region-${escapeAttribute(region)}">
-          <div class="region-head">
-            <div class="region-code">${escapeHtml(region)}</div>
-            <div>
-              <h2>${escapeHtml(endpoint?.label || region)}</h2>
-              <div class="region-meta">
-                ${regionServers.length} туннелей ·
-                ${new Set(regionServers.map((server) => server.ip)).size} IP ·
-                ${Object.keys(pools).length} пулов
-              </div>
+    if (!regionInfo && !count) return "";
+
+    return `
+      <a href="#region-${escapeAttribute(region)}">
+        ${escapeHtml(regionInfo?.label || region)} · ${count}
+      </a>
+    `;
+  }).join("");
+
+  const cards = [];
+
+  for (const region of order) {
+    const regionInfo = database.regions?.[region];
+    const pools = grouped[region] || {};
+    const regionServers = Object.values(pools).flat();
+
+    if (!regionInfo && !regionServers.length) continue;
+
+    if (hasActiveFilters && !regionServers.length) continue;
+
+    const availability = regionInfo?.available !== false;
+    const regionStatus = availability
+      ? regionServers.length
+        ? `${regionServers.length} серверов`
+        : "Серверы не указаны"
+      : "Данные временно недоступны";
+
+    const body = availability && regionServers.length
+      ? Object.entries(pools).map(([pool, poolServers]) => `
+          <section class="pool">
+            <div class="pool-head">
+              <span class="pool-name">${escapeHtml(pool)}</span>
+              <span class="pool-count">${poolServers.length} серверов</span>
             </div>
-            <span class="chevron">⌄</span>
-          </div>
 
-          <div class="region-body">
-            <div class="source-line">
-              <span class="source-pill">${escapeHtml(endpoint?.url || regionData?.endpoint || "")}</span>
-              ${regionData?.mode ? `<span class="source-pill">mode: ${escapeHtml(regionData.mode)}</span>` : ""}
+            <div class="table-wrap">
+              <table>
+                <colgroup><col><col><col><col><col><col></colgroup>
+                <thead>
+                  <tr>
+                    <th>Сервер</th>
+                    <th>Адрес</th>
+                    <th>Пул</th>
+                    <th>Порт</th>
+                    <th>ASN / оператор</th>
+                    <th>Город / страна</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${poolServers.map(serverRow).join("")}
+                </tbody>
+              </table>
             </div>
-
-            ${Object.entries(pools).map(([pool, poolServers]) => `
-              <section class="pool">
-                <div class="pool-head">
-                  <span class="pool-name">${escapeHtml(pool)}</span>
-                  <span class="pool-count">${poolServers.length} серверов</span>
-                </div>
-
-                <div class="table-wrap">
-                  <table>
-                    <colgroup><col><col><col><col><col><col><col></colgroup>
-                    <thead>
-                      <tr>
-                        <th>Сервер</th>
-                        <th>Адрес</th>
-                        <th>Пул</th>
-                        <th>Порт</th>
-                        <th>ASN / оператор</th>
-                        <th>Город / страна</th>
-                        <th>Endpoint</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      ${poolServers.map(serverRow).join("")}
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-            `).join("")}
+          </section>
+        `).join("")
+      : `
+          <div class="region-message">
+            ${escapeHtml(
+              availability
+                ? "В текущем снимке адресов для этого региона нет."
+                : "Последнее обновление не смогло получить данные этого региона.",
+            )}
           </div>
-        </section>
-      `;
-    })
-    .join("") || `<section class="panel empty">По заданным фильтрам ничего не найдено.</section>`;
+        `;
+
+    cards.push(`
+      <section
+        class="panel region-card open ${availability ? "" : "unavailable"}"
+        id="region-${escapeAttribute(region)}"
+      >
+        <div class="region-head">
+          <div class="region-code">${escapeHtml(region)}</div>
+          <div>
+            <h2>${escapeHtml(regionInfo?.label || region)}</h2>
+            <div class="region-meta">
+              ${escapeHtml(regionStatus)}
+              ${regionServers.length
+                ? ` · ${new Set(regionServers.map((server) => server.ip)).size} IP · ${Object.keys(pools).length} пулов`
+                : ""}
+            </div>
+          </div>
+          <span class="chevron">⌄</span>
+        </div>
+
+        <div class="region-body">${body}</div>
+      </section>
+    `);
+  }
+
+  $("regions").innerHTML = cards.join("")
+    || `<section class="panel empty">По заданным фильтрам ничего не найдено.</section>`;
 
   document.querySelectorAll(".region-head").forEach((header) => {
     header.addEventListener("click", () => {
@@ -309,88 +303,48 @@ function renderRegions(servers) {
 }
 
 function serverRow(server) {
-  const info = whois[server.ip] || {};
-
-  const networkCell = info.asn || info.org
-    ? `<strong>${escapeHtml(info.asn || "—")}</strong>
-       <div class="muted">${escapeHtml(info.org || "—")}</div>`
+  const networkCell = server.asn || server.operator
+    ? `
+        <strong>${escapeHtml(server.asn || "—")}</strong>
+        <div class="muted">${escapeHtml(server.operator || "—")}</div>
+      `
     : `<span class="muted">—</span>`;
 
-  const locationCell = info.city || info.country
-    ? `<strong>${escapeHtml(info.city || "—")}</strong>
-       <div class="muted">${escapeHtml(info.country || "—")}</div>`
+  const locationParts = [
+    server.city,
+    server.administrativeRegion && server.administrativeRegion !== server.city
+      ? server.administrativeRegion
+      : "",
+  ].filter(Boolean);
+
+  const locationCell = locationParts.length || server.country
+    ? `
+        <strong>${escapeHtml(locationParts.join(", ") || "—")}</strong>
+        <div class="muted">${escapeHtml(server.country || "—")}</div>
+      `
     : `<span class="muted">—</span>`;
 
   return `
     <tr>
       <td data-label="Сервер">
         <strong>${escapeHtml(server.name)}</strong>
-        <div class="muted">${escapeHtml(server.endpointId)}</div>
+        <div class="muted">${escapeHtml(server.region)}</div>
       </td>
       <td data-label="Адрес">
         <code>${escapeHtml(server.address)}</code>
-        <button class="copy" data-copy="${escapeAttribute(server.address)}" type="button">⧉</button>
+        <button
+          class="copy"
+          data-copy="${escapeAttribute(server.address)}"
+          type="button"
+          aria-label="Копировать адрес"
+        >⧉</button>
       </td>
       <td data-label="Пул">${escapeHtml(server.pool)}</td>
       <td data-label="Порт">${server.port ?? "—"}</td>
       <td data-label="ASN / оператор">${networkCell}</td>
       <td data-label="Город / страна">${locationCell}</td>
-      <td data-label="Endpoint"><span class="muted">${escapeHtml(server.endpoint)}</span></td>
     </tr>
   `;
-}
-
-async function loadWhois() {
-  if (!database) return;
-
-  const ips = [...new Set(database.servers.map((server) => server.ip).filter(Boolean))];
-  const missing = ips.filter((ip) => !whois[ip]);
-
-  if (!missing.length) {
-    toast("IP-данные уже загружены");
-    return;
-  }
-
-  $("whoisBtn").disabled = true;
-  let cursor = 0;
-  let completed = 0;
-
-  async function worker() {
-    while (cursor < missing.length) {
-      const ip = missing[cursor++];
-
-      try {
-        const response = await fetch(`https://ipwho.is/${encodeURIComponent(ip)}`, {
-          cache: "force-cache",
-          credentials: "omit",
-          referrerPolicy: "no-referrer",
-        });
-        const data = await response.json();
-
-        if (data.success !== false) {
-          whois[ip] = {
-            asn: data.connection?.asn ? `AS${data.connection.asn}` : "",
-            org: data.connection?.org || data.connection?.isp || "",
-            city: data.city || "",
-            country: data.country || "",
-          };
-        }
-      } catch {
-        // Ошибка одного IP не прерывает остальные запросы.
-      }
-
-      completed += 1;
-      $("whoisBtn").textContent = `${completed}/${missing.length}`;
-    }
-  }
-
-  await Promise.all([worker(), worker(), worker(), worker()]);
-  $("whoisBtn").disabled = false;
-  $("whoisBtn").textContent = "Загрузить IP-данные";
-
-  saveWhoisCache();
-  rebuild();
-  toast(`IP-данные: ${Object.keys(whois).length}/${ips.length}`);
 }
 
 function download(name, text, type) {
@@ -409,14 +363,15 @@ function exportJson() {
   if (!database) return;
 
   download(
-    "stalzone_servers.json",
-    JSON.stringify({ ...database, whois }, null, 2),
+    "server_directory.json",
+    JSON.stringify(database, null, 2),
     "application/json",
   );
 }
 
 function csvEscape(value) {
   const string = String(value ?? "");
+
   return /[",\n]/.test(string)
     ? `"${string.replaceAll('"', '""')}"`
     : string;
@@ -427,7 +382,6 @@ function exportCsv() {
 
   const lines = [[
     "region",
-    "endpoint",
     "pool",
     "server",
     "ip",
@@ -436,28 +390,28 @@ function exportCsv() {
     "asn",
     "operator",
     "city",
+    "administrative_region",
     "country",
   ].join(",")];
 
   for (const server of database.servers) {
-    const info = whois[server.ip] || {};
     lines.push([
       server.region,
-      server.endpoint,
       server.pool,
       server.name,
       server.ip,
       server.port,
       server.address,
-      info.asn,
-      info.org,
-      info.city,
-      info.country,
+      server.asn,
+      server.operator,
+      server.city,
+      server.administrativeRegion,
+      server.country,
     ].map(csvEscape).join(","));
   }
 
   download(
-    "stalzone_servers.csv",
+    "server_directory.csv",
     `\ufeff${lines.join("\n")}`,
     "text/csv;charset=utf-8",
   );
@@ -477,12 +431,13 @@ function escapeAttribute(value) {
 }
 
 $("refreshBtn").addEventListener("click", () => loadDatabase({ notify: true }));
-$("whoisBtn").addEventListener("click", loadWhois);
 $("exportJsonBtn").addEventListener("click", exportJson);
 $("exportCsvBtn").addEventListener("click", exportCsv);
 
 $("copyVisibleBtn").addEventListener("click", () => {
-  const ips = [...new Set(visibleServers.map((server) => server.ip).filter(Boolean))];
+  const ips = [
+    ...new Set(visibleServers.map((server) => server.ip).filter(Boolean)),
+  ];
 
   if (!ips.length) {
     toast("Нет IP");
@@ -492,9 +447,10 @@ $("copyVisibleBtn").addEventListener("click", () => {
   copyText(ips.join("\n"), `Скопировано IP: ${ips.length}`);
 });
 
-["search", "regionFilter", "poolFilter", "endpointFilter"].forEach((id) => {
+["search", "regionFilter", "poolFilter"].forEach((id) => {
   $(id).addEventListener(id === "search" ? "input" : "change", () => {
     if (!database) return;
+
     visibleServers = applyFilters(database.servers);
     renderRegions(visibleServers);
   });

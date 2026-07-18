@@ -7,7 +7,6 @@ on:
       - master
   workflow_dispatch:
   schedule:
-    # Четыре запуска в час, не в начале часа, чтобы снизить вероятность задержек.
     - cron: "7,22,37,52 * * * *"
 
 permissions:
@@ -29,9 +28,10 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: "22"
+          node-version: "24"
+          package-manager-cache: false
 
       - name: Fetch current endpoint data
         run: node scripts/fetch-servers.mjs
@@ -40,7 +40,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: public
 

@@ -727,5 +727,32 @@
     "country": "Южная Корея",
     "countryCode": "KR",
     "updatedAt": "2026-07-18T12:36:50.979Z"
+  },
+  "138.199.4.155": {
+    "asn": "AS60068",
+    "operator": "Cdn77 BR SAO Paulo",
+    "city": "Агломерация Сан-Паулу",
+    "region": "Сан-Паулу",
+    "country": "Бразилия",
+    "countryCode": "BR",
+    "updatedAt": "2026-07-24T14:00:11.417Z"
+  },
+  "79.127.209.171": {
+    "asn": "AS60068",
+    "operator": "Cdn77 SCL",
+    "city": "Сантьяго",
+    "region": "Сантьяго",
+    "country": "Чили",
+    "countryCode": "CL",
+    "updatedAt": "2026-07-24T14:00:11.430Z"
+  },
+  "152.233.23.183": {
+    "asn": "AS60068",
+    "operator": "CDN77 Miami",
+    "city": "Майами",
+    "region": "Флорида",
+    "country": "США",
+    "countryCode": "US",
+    "updatedAt": "2026-07-24T14:00:11.433Z"
   }
 }

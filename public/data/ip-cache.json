@@ -754,5 +754,14 @@
     "country": "США",
     "countryCode": "US",
     "updatedAt": "2026-07-24T14:00:11.433Z"
+  },
+  "89.222.105.74": {
+    "asn": "AS60068",
+    "operator": "CDN77 Lima",
+    "city": "Лима",
+    "region": "Лима",
+    "country": "Перу",
+    "countryCode": "PE",
+    "updatedAt": "2026-07-28T14:25:35.870Z"
   }
 }

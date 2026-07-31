@@ -1,5 +1,11 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+import { lookup } from "node:dns/promises";
+import { isIP } from "node:net";
+
+const execFileAsync = promisify(execFile);
 
 const REGION_ORDER = ["RU", "EU", "NA", "SEA", "NEA"];
 
@@ -7,35 +13,50 @@ const SOURCES = [
   {
     region: "RU",
     label: "Россия",
-    url: "https://backend.stalcraftx.ru/address_list?login=Hi",
+    urls: [
+      "https://backend.stalcraftx.ru/address_list?login=Hi",
+      "http://backend.stalcraftx.ru/address_list?login=Hi",
+    ],
+    allowInsecureTls: true,
   },
   {
     region: "EU",
     label: "Европа",
     url: "https://backend-eu.stalzone.com/address_list?login=Hi",
+    allowInsecureTls: true,
   },
   {
     region: "NA",
     label: "Америка",
     url: "https://backend-na.stalzone.com/address_list?login=Hi",
+    allowInsecureTls: true,
   },
   {
     region: "SEA",
     label: "Юго-Восточная Азия",
     url: "https://backend-sea.stalzone.com/address_list?login=Hi",
+    allowInsecureTls: true,
   },
   {
     region: "NEA",
     label: "Северо-Восточная Азия",
     url: "https://backend-nea.stalzone.com/address_list?login=Hi",
+    allowInsecureTls: true,
   },
 ];
 
 const OUTPUT_FILE = resolve("public/data/servers.json");
 const IP_CACHE_FILE = resolve("public/data/ip-cache.json");
 const LEGACY_FILE = resolve("scripts/legacy-servers.json");
+const REGION_FALLBACK_FILE = resolve("scripts/region-fallbacks.json");
 
-const SOURCE_TIMEOUT_MS = 25_000;
+const SOURCE_TIMEOUT_MS = 20_000;
+const SOURCE_CURL_MAX_TIME_SECONDS = 25;
+const SOURCE_CURL_RETRY_MAX_TIME_SECONDS = 55;
+const SOURCE_USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) "
+  + "AppleWebKit/537.36 (KHTML, like Gecko) "
+  + "Chrome/126.0 Safari/537.36 StalzoneServerlist/6.6";
+const MAX_SOURCE_RESPONSE_BYTES = 2 * 1024 * 1024;
 const LOOKUP_TIMEOUT_MS = 6_000;
 const IP_LOOKUP_BUDGET_MS = 60_000;
 const IP_CACHE_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
@@ -75,24 +96,213 @@ async function readJsonFile(file, fallback) {
   }
 }
 
-async function fetchRegion(source) {
+function parseRegionPayload(source, text) {
+  if (Buffer.byteLength(text, "utf8") > MAX_SOURCE_RESPONSE_BYTES) {
+    throw new Error(
+      `Ответ превышает допустимый размер `
+        + `${MAX_SOURCE_RESPONSE_BYTES} байт`,
+    );
+  }
+
+  let data;
+
+  try {
+    data = JSON.parse(text);
+  } catch {
+    throw new Error(
+      `Получен ответ не в формате JSON; первые символы: `
+        + `${String(text).slice(0, 100).replace(/\s+/g, " ")}`,
+    );
+  }
+
+  if (!data || typeof data !== "object" || Array.isArray(data)) {
+    throw new Error("Корневое значение ответа должно быть объектом");
+  }
+
+  if (data.mode !== "roxy") {
+    throw new Error(`Неожиданное значение mode: ${String(data.mode)}`);
+  }
+
+  if (!Array.isArray(data.pools) || data.pools.length === 0) {
+    throw new Error("Ответ не содержит непустой pools[]");
+  }
+
+  let tunnelCount = 0;
+
+  const pools = data.pools.map((pool, poolIndex) => {
+    const poolName = String(pool?.name ?? "").trim();
+
+    if (!poolName) {
+      throw new Error(`У пула #${poolIndex + 1} отсутствует name`);
+    }
+
+    if (!Array.isArray(pool?.tunnels)) {
+      throw new Error(`Пул ${poolName} не содержит tunnels[]`);
+    }
+
+    const tunnels = pool.tunnels.map((tunnel, tunnelIndex) => {
+      const name = String(tunnel?.name ?? "").trim();
+      const address = String(tunnel?.address ?? "").trim();
+      const { ip, port } = splitAddress(address);
+
+      if (!name) {
+        throw new Error(
+          `У туннеля #${tunnelIndex + 1} в пуле ${poolName} `
+            + `отсутствует name`,
+        );
+      }
+
+      if (!isIP(ip)) {
+        throw new Error(
+          `Некорректный IP у ${name}: ${address || "(пусто)"}`,
+        );
+      }
+
+      if (!Number.isInteger(port) || port < 1 || port > 65_535) {
+        throw new Error(`Некорректный порт у ${name}: ${address}`);
+      }
+
+      tunnelCount += 1;
+
+      return {
+        name,
+        address,
+        ip,
+        port,
+      };
+    });
+
+    return {
+      name: poolName,
+      tunnels,
+    };
+  });
+
+  if (tunnelCount === 0) {
+    throw new Error("Ответ не содержит ни одного туннеля");
+  }
+
+  if (
+    data.clientToTunnelRttWeight !== undefined
+    && !Number.isFinite(Number(data.clientToTunnelRttWeight))
+  ) {
+    throw new Error("Некорректное значение clientToTunnelRttWeight");
+  }
+
+  return {
+    region: source.region,
+    label: source.label,
+    available: true,
+    fresh: true,
+    error: null,
+    fallbackSource: null,
+    dataGeneratedAt: new Date().toISOString(),
+    pools,
+  };
+}
+
+function formatSourceError(error) {
+  const code = error?.cause?.code || error?.code;
+  const stderr = String(error?.stderr ?? "").trim();
+  const message = String(error?.message ?? error).trim();
+
+  return [message, code ? `code=${code}` : "", stderr]
+    .filter(Boolean)
+    .join("; ")
+    .slice(0, 600);
+}
+
+async function logDnsDiagnostics(source) {
+  const primaryUrl = source.urls?.[0] ?? source.url;
+  const hostname = new URL(primaryUrl).hostname;
+
+  try {
+    const records = await lookup(hostname, {
+      all: true,
+      order: "ipv4first",
+    });
+    console.log(
+      `[DNS] ${source.region} ${hostname}: `
+        + records.map((record) => `${record.address}/IPv${record.family}`).join(", "),
+    );
+  } catch (error) {
+    console.warn(
+      `[DNS ERROR] ${source.region} ${hostname}: ${formatSourceError(error)}`,
+    );
+  }
+}
+
+async function fetchSourceWithCurl(source, url, options = {}) {
+  const protocol = new URL(url).protocol;
+  const allowedProtocol = protocol === "https:" ? "=https" : "=http";
+
+  const args = [
+    "--ipv4",
+    ...(options.insecureTls ? ["--insecure"] : []),
+    "--silent",
+    "--show-error",
+    "--fail-with-body",
+    "--proto",
+    allowedProtocol,
+    "--connect-timeout",
+    "10",
+    "--max-time",
+    String(SOURCE_CURL_MAX_TIME_SECONDS),
+    "--retry",
+    "3",
+    "--retry-delay",
+    "2",
+    "--retry-all-errors",
+    "--retry-max-time",
+    String(SOURCE_CURL_RETRY_MAX_TIME_SECONDS),
+    "--header",
+    "Accept: application/json",
+    "--header",
+    "Cache-Control: no-cache",
+    "--header",
+    "Connection: close",
+    "--header",
+    `User-Agent: ${SOURCE_USER_AGENT}`,
+    url,
+  ];
+
+  const { stdout } = await execFileAsync("curl", args, {
+    encoding: "utf8",
+    maxBuffer: MAX_SOURCE_RESPONSE_BYTES,
+  });
+
+  return stdout;
+}
+
+async function fetchSourceWithNode(source, url) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), SOURCE_TIMEOUT_MS);
 
   try {
-    const separator = source.url.includes("?") ? "&" : "?";
-    const response = await fetch(`${source.url}${separator}_ts=${Date.now()}`, {
+    const response = await fetch(url, {
       method: "GET",
       headers: {
         Accept: "application/json",
-        "User-Agent": "Stalzone-Serverlist-GitHub-Pages/3.0",
+        "Cache-Control": "no-cache",
+        "Connection": "close",
+        "User-Agent": SOURCE_USER_AGENT,
       },
-      cache: "no-store",
-      redirect: "follow",
+      redirect: "manual",
       signal: controller.signal,
     });
 
+    if (response.status >= 300 && response.status < 400) {
+      throw new Error(
+        `HTTP redirect ${response.status} `
+          + `to ${response.headers.get("location") || "(unknown)"}`,
+      );
+    }
+
     const text = await response.text();
+
+    if (Buffer.byteLength(text, "utf8") > MAX_SOURCE_RESPONSE_BYTES) {
+      throw new Error("Ответ превышает допустимый размер");
+    }
 
     if (!response.ok) {
       throw new Error(
@@ -100,55 +310,179 @@ async function fetchRegion(source) {
       );
     }
 
-    let data;
+    return text;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function previousRegionPools(previousPayload, regionCode) {
+  const grouped = new Map();
+
+  for (const server of previousPayload?.servers || []) {
+    if (server.region !== regionCode) continue;
+
+    if (!grouped.has(server.pool)) {
+      grouped.set(server.pool, []);
+    }
+
+    grouped.get(server.pool).push({
+      name: server.name,
+      address: server.address,
+      ip: server.ip,
+      port: server.port,
+    });
+  }
+
+  return [...grouped.entries()].map(([name, tunnels]) => ({
+    name,
+    tunnels,
+  }));
+}
+
+async function fetchRegion(source, previousPayload, bundledFallbacks) {
+  await logDnsDiagnostics(source);
+
+  const errors = [];
+
+  const candidateUrls = source.urls ?? [source.url];
+  const attempts = [];
+
+  for (const url of candidateUrls) {
+    const protocol = new URL(url).protocol;
+    const transportName = protocol === "https:" ? "HTTPS" : "HTTP";
+
+    attempts.push({
+      name: `${transportName} curl/IPv4`,
+      url,
+      method: fetchSourceWithCurl,
+      options: {},
+    });
+
+    attempts.push({
+      name: `${transportName} Node fetch`,
+      url,
+      method: fetchSourceWithNode,
+      options: {},
+    });
+
+    if (
+      protocol === "https:"
+      && source.allowInsecureTls === true
+    ) {
+      attempts.push({
+        name: "HTTPS curl/IPv4 without certificate verification",
+        url,
+        method: fetchSourceWithCurl,
+        options: { insecureTls: true },
+      });
+    }
+  }
+
+  for (const attempt of attempts) {
     try {
-      data = JSON.parse(text);
-    } catch {
-      throw new Error("Получен ответ не в формате JSON");
+      console.log(`[SOURCE] ${source.region}: trying ${attempt.name}.`);
+      const text = await attempt.method(
+        source,
+        attempt.url,
+        attempt.options,
+      );
+      const result = parseRegionPayload(source, text);
+      const tunnelCount = result.pools.reduce(
+        (sum, pool) => sum + pool.tunnels.length,
+        0,
+      );
+
+      const protocol = new URL(attempt.url).protocol;
+
+      if (attempt.options.insecureTls) {
+        console.warn(
+          `[SOURCE WARNING] ${source.region}: accepted HTTPS data `
+            + `without validating the server certificate for the configured `
+            + `server-list backend. The JSON structure and every IP/port `
+            + `were validated.`,
+        );
+      } else if (protocol === "http:") {
+        console.warn(
+          `[SOURCE WARNING] ${source.region}: HTTPS failed; `
+            + `accepted a strictly validated HTTP response.`,
+        );
+      }
+
+      console.log(
+        `[SOURCE OK] ${source.region} via ${attempt.name}: `
+          + `${result.pools.length} pools, ${tunnelCount} tunnels.`,
+      );
+      return result;
+    } catch (error) {
+      const detail = formatSourceError(error);
+      errors.push(`${attempt.name}: ${detail}`);
+      console.error(
+        `[SOURCE ERROR] ${source.region} ${attempt.name}: ${detail}`,
+      );
     }
+  }
 
-    if (!data || !Array.isArray(data.pools)) {
-      throw new Error("Ответ не содержит pools[]");
-    }
+  const previousPools = previousRegionPools(previousPayload, source.region);
+  const bundledRegion = bundledFallbacks?.regions?.[source.region];
+  const bundledPools = Array.isArray(bundledRegion?.pools)
+    ? bundledRegion.pools.map((pool) => ({
+        name: String(pool?.name ?? ""),
+        tunnels: Array.isArray(pool?.tunnels)
+          ? pool.tunnels.map((tunnel) => {
+              const address = String(tunnel?.address ?? "");
+              const { ip, port } = splitAddress(address);
+              return {
+                name: String(tunnel?.name ?? ""),
+                address,
+                ip,
+                port,
+              };
+            })
+          : [],
+      }))
+    : [];
 
-    const pools = data.pools.map((pool) => ({
-      name: String(pool?.name ?? ""),
-      tunnels: Array.isArray(pool?.tunnels)
-        ? pool.tunnels.map((tunnel) => {
-            const address = String(tunnel?.address ?? "");
-            const { ip, port } = splitAddress(address);
+  const pools = previousPools.length ? previousPools : bundledPools;
+  const fallbackSource = previousPools.length
+    ? "previous_snapshot"
+    : bundledPools.length
+      ? "bundled_snapshot"
+      : null;
+  const dataGeneratedAt = previousPools.length
+    ? previousPayload?.generatedAt || null
+    : bundledPools.length
+      ? bundledFallbacks?.generatedAt || null
+      : null;
 
-            return {
-              name: String(tunnel?.name ?? ""),
-              address,
-              ip,
-              port,
-            };
-          })
-        : [],
-    }));
+  if (pools.length) {
+    console.warn(
+      `[SOURCE FALLBACK] ${source.region}: using ${fallbackSource}; `
+        + `${pools.reduce((sum, pool) => sum + pool.tunnels.length, 0)} tunnels.`,
+    );
 
     return {
       region: source.region,
       label: source.label,
       available: true,
-      error: null,
+      fresh: false,
+      error: errors.join(" | "),
+      fallbackSource,
+      dataGeneratedAt,
       pools,
     };
-  } catch (error) {
-    return {
-      region: source.region,
-      label: source.label,
-      available: false,
-      error:
-        error?.name === "AbortError"
-          ? `Превышено время ожидания ${SOURCE_TIMEOUT_MS / 1000} сек.`
-          : String(error?.message ?? error),
-      pools: [],
-    };
-  } finally {
-    clearTimeout(timeout);
   }
+
+  return {
+    region: source.region,
+    label: source.label,
+    available: false,
+    fresh: false,
+    error: errors.join(" | "),
+    fallbackSource: null,
+    dataGeneratedAt: null,
+    pools: [],
+  };
 }
 
 function flattenServers(regionResults) {
@@ -354,7 +688,7 @@ function legacyIdentity(server) {
 function buildOldServers({ archive, servers, regionResults, previousOldServers }) {
   const availableRegions = new Set(
     regionResults
-      .filter((region) => region.available)
+      .filter((region) => region.fresh)
       .map((region) => region.region),
   );
 
@@ -448,7 +782,11 @@ function buildRegions(regionResults, servers) {
       code: regionCode,
       label: source?.label || regionCode,
       available: source?.available ?? false,
+      fresh: source?.fresh ?? false,
+      stale: Boolean(source?.available && !source?.fresh),
       error: source?.error || null,
+      fallbackSource: source?.fallbackSource || null,
+      dataGeneratedAt: source?.dataGeneratedAt || null,
       poolCount: source?.pools?.length || 0,
       tunnelCount: regionServers.length,
       uniqueIpCount: new Set(
@@ -466,12 +804,22 @@ async function main() {
   console.log("Starting server snapshot build...");
   console.log("Phase 1/4: fetching current regional server lists.");
 
-  const [regionResults, legacyData, previousPayload] = await Promise.all([
-    Promise.all(SOURCES.map(fetchRegion)),
+  const [legacyData, previousPayload, bundledFallbacks] = await Promise.all([
     readJsonFile(LEGACY_FILE, { servers: [] }),
-    readJsonFile(OUTPUT_FILE, { oldServers: [] }),
+    readJsonFile(OUTPUT_FILE, { servers: [], oldServers: [] }),
+    readJsonFile(REGION_FALLBACK_FILE, { regions: {} }),
   ]);
+
+  const regionResults = await Promise.all(
+    SOURCES.map((source) =>
+      fetchRegion(source, previousPayload, bundledFallbacks)
+    ),
+  );
   const availableRegions = regionResults.filter((region) => region.available);
+  const freshRegions = regionResults.filter((region) => region.fresh);
+  const staleRegions = regionResults.filter(
+    (region) => region.available && !region.fresh,
+  );
 
   for (const region of regionResults) {
     if (region.available) {
@@ -479,9 +827,10 @@ async function main() {
         (sum, pool) => sum + pool.tunnels.length,
         0,
       );
+      const state = region.fresh ? "fresh" : `fallback:${region.fallbackSource}`;
       console.log(
         `[OK] ${region.region}: ${region.pools.length} pools, `
-          + `${tunnelCount} tunnels`,
+          + `${tunnelCount} tunnels, ${state}`,
       );
     } else {
       console.error(`[ERROR] ${region.region}: ${region.error}`);
@@ -543,11 +892,13 @@ async function main() {
   const payload = {
     schemaVersion: 3,
     generatedAt,
-    complete: availableRegions.length === SOURCES.length,
+    complete: freshRegions.length === SOURCES.length,
     regionOrder: REGION_ORDER,
     summary: {
       regionTotal: SOURCES.length,
       regionAvailable: availableRegions.length,
+      regionFresh: freshRegions.length,
+      regionStale: staleRegions.length,
       regionUnavailable: SOURCES.length - availableRegions.length,
       poolCount: regionResults.reduce(
         (sum, region) => sum + region.pools.length,

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": null,
+  "generatedAt": "2026-07-31T16:30:35.406Z",
   "complete": false,
   "regionOrder": [
     "RU",
@@ -11,23 +11,23 @@
   ],
   "summary": {
     "regionTotal": 5,
-    "regionAvailable": 0,
-    "regionUnavailable": 5,
-    "poolCount": 0,
-    "tunnelCount": 0,
-    "uniqueIpCount": 0,
-    "networkInfoCount": 0,
+    "regionAvailable": 4,
+    "regionUnavailable": 1,
+    "poolCount": 12,
+    "tunnelCount": 28,
+    "uniqueIpCount": 28,
+    "networkInfoCount": 28,
     "historicalArchiveCount": 99,
-    "oldServerCount": 99,
-    "historicalServersLiveNow": 0,
-    "historicalComparisonDeferred": 99
+    "oldServerCount": 88,
+    "historicalServersLiveNow": 11,
+    "historicalComparisonDeferred": 0
   },
   "regions": {
     "RU": {
       "code": "RU",
       "label": "Россия",
       "available": false,
-      "error": null,
+      "error": "fetch failed",
       "poolCount": 0,
       "tunnelCount": 0,
       "uniqueIpCount": 0
@@ -35,41 +35,462 @@
     "EU": {
       "code": "EU",
       "label": "Европа",
-      "available": false,
+      "available": true,
       "error": null,
-      "poolCount": 0,
-      "tunnelCount": 0,
-      "uniqueIpCount": 0
+      "poolCount": 2,
+      "tunnelCount": 7,
+      "uniqueIpCount": 7
     },
     "NA": {
       "code": "NA",
       "label": "Америка",
-      "available": false,
+      "available": true,
       "error": null,
-      "poolCount": 0,
-      "tunnelCount": 0,
-      "uniqueIpCount": 0
+      "poolCount": 6,
+      "tunnelCount": 8,
+      "uniqueIpCount": 8
     },
     "SEA": {
       "code": "SEA",
       "label": "Юго-Восточная Азия",
-      "available": false,
+      "available": true,
       "error": null,
-      "poolCount": 0,
-      "tunnelCount": 0,
-      "uniqueIpCount": 0
+      "poolCount": 2,
+      "tunnelCount": 2,
+      "uniqueIpCount": 2
     },
     "NEA": {
       "code": "NEA",
       "label": "Северо-Восточная Азия",
-      "available": false,
+      "available": true,
       "error": null,
-      "poolCount": 0,
-      "tunnelCount": 0,
-      "uniqueIpCount": 0
+      "poolCount": 2,
+      "tunnelCount": 11,
+      "uniqueIpCount": 11
     }
   },
-  "servers": [],
+  "servers": [
+    {
+      "region": "EU",
+      "regionLabel": "Европа",
+      "pool": "FRA",
+      "name": "GAME-EU-1",
+      "address": "89.222.108.193:29450",
+      "ip": "89.222.108.193",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-FRA",
+      "city": "Франкфурт-на-Майне",
+      "administrativeRegion": "Гессен",
+      "country": "Германия",
+      "countryCode": "DE"
+    },
+    {
+      "region": "EU",
+      "regionLabel": "Европа",
+      "pool": "FRA",
+      "name": "GAME-EU-2",
+      "address": "79.127.241.67:29450",
+      "ip": "79.127.241.67",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-FRA",
+      "city": "Франкфурт-на-Майне",
+      "administrativeRegion": "Гессен",
+      "country": "Германия",
+      "countryCode": "DE"
+    },
+    {
+      "region": "EU",
+      "regionLabel": "Европа",
+      "pool": "FRA",
+      "name": "GAME-EU-3",
+      "address": "79.127.241.68:29450",
+      "ip": "79.127.241.68",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-FRA",
+      "city": "Франкфурт-на-Майне",
+      "administrativeRegion": "Гессен",
+      "country": "Германия",
+      "countryCode": "DE"
+    },
+    {
+      "region": "EU",
+      "regionLabel": "Европа",
+      "pool": "FRA",
+      "name": "GAME-EU-4",
+      "address": "79.127.241.69:29450",
+      "ip": "79.127.241.69",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-FRA",
+      "city": "Франкфурт-на-Майне",
+      "administrativeRegion": "Гессен",
+      "country": "Германия",
+      "countryCode": "DE"
+    },
+    {
+      "region": "EU",
+      "regionLabel": "Европа",
+      "pool": "FRA",
+      "name": "GAME-EU-7",
+      "address": "152.233.7.40:29450",
+      "ip": "152.233.7.40",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-FRA",
+      "city": "Франкфурт-на-Майне",
+      "administrativeRegion": "Гессен",
+      "country": "Германия",
+      "countryCode": "DE"
+    },
+    {
+      "region": "EU",
+      "regionLabel": "Европа",
+      "pool": "FRA",
+      "name": "GAME-EU-8",
+      "address": "152.233.7.41:29450",
+      "ip": "152.233.7.41",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-FRA",
+      "city": "Франкфурт-на-Майне",
+      "administrativeRegion": "Гессен",
+      "country": "Германия",
+      "countryCode": "DE"
+    },
+    {
+      "region": "EU",
+      "regionLabel": "Европа",
+      "pool": "MSK2X",
+      "name": "MSK2-ROXY11",
+      "address": "111.88.96.28:29450",
+      "ip": "111.88.96.28",
+      "port": 29450,
+      "asn": "AS50340",
+      "operator": "Selectel Network",
+      "city": "Москва",
+      "administrativeRegion": "Москва",
+      "country": "Российская Федерация",
+      "countryCode": "RU"
+    },
+    {
+      "region": "NA",
+      "regionLabel": "Америка",
+      "pool": "DAL",
+      "name": "GAME-NA-3",
+      "address": "89.187.175.135:29450",
+      "ip": "89.187.175.135",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-DAL",
+      "city": "Даллас",
+      "administrativeRegion": "Техас",
+      "country": "США",
+      "countryCode": "US"
+    },
+    {
+      "region": "NA",
+      "regionLabel": "Америка",
+      "pool": "DAL",
+      "name": "GAME-NA-4",
+      "address": "89.187.175.102:29450",
+      "ip": "89.187.175.102",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-DAL",
+      "city": "Даллас",
+      "administrativeRegion": "Техас",
+      "country": "США",
+      "countryCode": "US"
+    },
+    {
+      "region": "NA",
+      "regionLabel": "Америка",
+      "pool": "DAL",
+      "name": "GAME-NA-5",
+      "address": "89.187.175.65:29450",
+      "ip": "89.187.175.65",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-DAL",
+      "city": "Даллас",
+      "administrativeRegion": "Техас",
+      "country": "США",
+      "countryCode": "US"
+    },
+    {
+      "region": "NA",
+      "regionLabel": "Америка",
+      "pool": "LAX",
+      "name": "LAX-ROXY1",
+      "address": "89.187.185.94:29450",
+      "ip": "89.187.185.94",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-LAX",
+      "city": "Лос-Анджелес",
+      "administrativeRegion": "Калифорния",
+      "country": "США",
+      "countryCode": "US"
+    },
+    {
+      "region": "NA",
+      "regionLabel": "Америка",
+      "pool": "LIM",
+      "name": "LIM-ROXY1",
+      "address": "89.222.105.74:29450",
+      "ip": "89.222.105.74",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77 Lima",
+      "city": "Лима",
+      "administrativeRegion": "Лима",
+      "country": "Перу",
+      "countryCode": "PE"
+    },
+    {
+      "region": "NA",
+      "regionLabel": "Америка",
+      "pool": "MIA",
+      "name": "MIA-ROXY1",
+      "address": "152.233.23.183:29450",
+      "ip": "152.233.23.183",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77 Miami",
+      "city": "Майами",
+      "administrativeRegion": "Флорида",
+      "country": "США",
+      "countryCode": "US"
+    },
+    {
+      "region": "NA",
+      "regionLabel": "Америка",
+      "pool": "NYC",
+      "name": "NYC-ROXY1",
+      "address": "89.187.179.170:29450",
+      "ip": "89.187.179.170",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-NYC",
+      "city": "Нью-Йорк",
+      "administrativeRegion": "Нью-Йорк",
+      "country": "США",
+      "countryCode": "US"
+    },
+    {
+      "region": "NA",
+      "regionLabel": "Америка",
+      "pool": "SAN",
+      "name": "SAN-ROXY1",
+      "address": "79.127.209.171:29450",
+      "ip": "79.127.209.171",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "Cdn77 SCL",
+      "city": "Сантьяго",
+      "administrativeRegion": "Сантьяго",
+      "country": "Чили",
+      "countryCode": "CL"
+    },
+    {
+      "region": "SEA",
+      "regionLabel": "Юго-Восточная Азия",
+      "pool": "SGP",
+      "name": "SGP-1",
+      "address": "89.40.226.42:29450",
+      "ip": "89.40.226.42",
+      "port": 29450,
+      "asn": "AS8849",
+      "operator": "Melbicom",
+      "city": "Сингапур",
+      "administrativeRegion": "Central Singapore",
+      "country": "Сингапур",
+      "countryCode": "SG"
+    },
+    {
+      "region": "SEA",
+      "regionLabel": "Юго-Восточная Азия",
+      "pool": "SYD",
+      "name": "SYD-ROXY1",
+      "address": "143.244.63.114:29450",
+      "ip": "143.244.63.114",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-SYD",
+      "city": "Сидней",
+      "administrativeRegion": "Новый Южный Уэльс",
+      "country": "Австралия",
+      "countryCode": "AU"
+    },
+    {
+      "region": "NEA",
+      "regionLabel": "Северо-Восточная Азия",
+      "pool": "KOR",
+      "name": "KOR-1",
+      "address": "89.222.116.89:29450",
+      "ip": "89.222.116.89",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-SEO",
+      "city": "Сеул",
+      "administrativeRegion": "Сеул",
+      "country": "Южная Корея",
+      "countryCode": "KR"
+    },
+    {
+      "region": "NEA",
+      "regionLabel": "Северо-Восточная Азия",
+      "pool": "KOR",
+      "name": "KOR-2",
+      "address": "89.222.116.90:29450",
+      "ip": "89.222.116.90",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-SEO",
+      "city": "Сеул",
+      "administrativeRegion": "Сеул",
+      "country": "Южная Корея",
+      "countryCode": "KR"
+    },
+    {
+      "region": "NEA",
+      "regionLabel": "Северо-Восточная Азия",
+      "pool": "KOR",
+      "name": "KOR-3",
+      "address": "89.222.116.91:29450",
+      "ip": "89.222.116.91",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-SEO",
+      "city": "Сеул",
+      "administrativeRegion": "Сеул",
+      "country": "Южная Корея",
+      "countryCode": "KR"
+    },
+    {
+      "region": "NEA",
+      "regionLabel": "Северо-Восточная Азия",
+      "pool": "KOR",
+      "name": "KOR-4",
+      "address": "89.222.116.92:29450",
+      "ip": "89.222.116.92",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-SEO",
+      "city": "Сеул",
+      "administrativeRegion": "Сеул",
+      "country": "Южная Корея",
+      "countryCode": "KR"
+    },
+    {
+      "region": "NEA",
+      "regionLabel": "Северо-Восточная Азия",
+      "pool": "KOR",
+      "name": "KOR-5",
+      "address": "89.222.116.93:29450",
+      "ip": "89.222.116.93",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-SEO",
+      "city": "Сеул",
+      "administrativeRegion": "Сеул",
+      "country": "Южная Корея",
+      "countryCode": "KR"
+    },
+    {
+      "region": "NEA",
+      "regionLabel": "Северо-Восточная Азия",
+      "pool": "KOR",
+      "name": "KOR-6",
+      "address": "89.222.116.94:29450",
+      "ip": "89.222.116.94",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-SEO",
+      "city": "Сеул",
+      "administrativeRegion": "Сеул",
+      "country": "Южная Корея",
+      "countryCode": "KR"
+    },
+    {
+      "region": "NEA",
+      "regionLabel": "Северо-Восточная Азия",
+      "pool": "KOR",
+      "name": "KOR-7",
+      "address": "89.222.116.95:29450",
+      "ip": "89.222.116.95",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-SEO",
+      "city": "Сеул",
+      "administrativeRegion": "Сеул",
+      "country": "Южная Корея",
+      "countryCode": "KR"
+    },
+    {
+      "region": "NEA",
+      "regionLabel": "Северо-Восточная Азия",
+      "pool": "KOR",
+      "name": "KOR-8",
+      "address": "89.222.116.96:29450",
+      "ip": "89.222.116.96",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-SEO",
+      "city": "Сеул",
+      "administrativeRegion": "Сеул",
+      "country": "Южная Корея",
+      "countryCode": "KR"
+    },
+    {
+      "region": "NEA",
+      "regionLabel": "Северо-Восточная Азия",
+      "pool": "KOR",
+      "name": "KOR-9",
+      "address": "89.222.116.97:29450",
+      "ip": "89.222.116.97",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-SEO",
+      "city": "Сеул",
+      "administrativeRegion": "Сеул",
+      "country": "Южная Корея",
+      "countryCode": "KR"
+    },
+    {
+      "region": "NEA",
+      "regionLabel": "Северо-Восточная Азия",
+      "pool": "KOR",
+      "name": "KOR-10",
+      "address": "89.222.116.98:29450",
+      "ip": "89.222.116.98",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-SEO",
+      "city": "Сеул",
+      "administrativeRegion": "Сеул",
+      "country": "Южная Корея",
+      "countryCode": "KR"
+    },
+    {
+      "region": "NEA",
+      "regionLabel": "Северо-Восточная Азия",
+      "pool": "TYO",
+      "name": "GAME-NEA-7",
+      "address": "178.249.213.66:29450",
+      "ip": "178.249.213.66",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "CDN77-TYO",
+      "city": "Токио",
+      "administrativeRegion": "Токио",
+      "country": "Япония",
+      "countryCode": "JP"
+    }
+  ],
   "oldServers": [
     {
       "region": "RU",
@@ -81,7 +502,9 @@
       "asn": "AS212189",
       "operator": "IT-GRAD TOO",
       "city": "Астана",
-      "country": "Казахстан"
+      "country": "Казахстан",
+      "administrativeRegion": "Алма-Ата",
+      "countryCode": "KZ"
     },
     {
       "region": "RU",
@@ -93,7 +516,9 @@
       "asn": "AS212189",
       "operator": "IT-GRAD TOO",
       "city": "Астана",
-      "country": "Казахстан"
+      "country": "Казахстан",
+      "administrativeRegion": "Алма-Ата",
+      "countryCode": "KZ"
     },
     {
       "region": "RU",
@@ -105,7 +530,9 @@
       "asn": "AS43260",
       "operator": "DGN TEKNOLOJI A.S.",
       "city": "Не подтверждено",
-      "country": "Россия (использование подсети)"
+      "country": "Россия (использование подсети)",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -117,7 +544,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Екатеринбург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Свердловская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -129,7 +558,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Екатеринбург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Свердловская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -141,7 +572,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Екатеринбург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Свердловская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -153,7 +586,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Екатеринбург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Свердловская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -165,7 +600,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Екатеринбург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -177,7 +614,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Екатеринбург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -189,7 +628,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Екатеринбург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Свердловская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -201,7 +642,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Екатеринбург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Свердловская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -213,7 +656,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Екатеринбург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Свердловская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -225,7 +670,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Екатеринбург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Свердловская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -237,7 +684,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Хабаровск",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Хабаровский край",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -249,7 +698,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Хабаровск",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Хабаровский край",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -261,7 +712,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Хабаровск",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Хабаровский край",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -273,7 +726,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Красноярск",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Красноярский край",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -285,7 +740,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Красноярск",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Красноярский край",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -297,7 +754,9 @@
       "asn": "AS25106",
       "operator": "Mobile TeleSystems JLLC",
       "city": "Минск",
-      "country": "Беларусь"
+      "country": "Беларусь",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -309,7 +768,9 @@
       "asn": "AS25106",
       "operator": "Mobile TeleSystems JLLC",
       "city": "Минск",
-      "country": "Беларусь"
+      "country": "Беларусь",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -321,7 +782,9 @@
       "asn": "AS25106",
       "operator": "Mobile TeleSystems JLLC",
       "city": "Минск",
-      "country": "Беларусь"
+      "country": "Беларусь",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -333,7 +796,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -345,7 +810,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -357,7 +824,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -369,7 +838,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -381,7 +852,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -393,7 +866,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -405,7 +880,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -417,7 +894,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -429,7 +908,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -441,7 +922,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -453,7 +936,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -465,7 +950,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -477,7 +964,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -489,7 +978,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -501,7 +992,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Санкт-Петербург",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -513,7 +1006,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -525,7 +1020,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -537,7 +1034,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -549,7 +1048,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -561,7 +1062,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -573,7 +1076,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -585,7 +1090,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -597,7 +1104,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -609,7 +1118,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -621,7 +1132,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -633,7 +1146,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -645,7 +1160,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -657,7 +1174,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -669,7 +1188,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -681,7 +1202,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Санкт-Петербург",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -693,7 +1216,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -705,7 +1230,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -717,7 +1244,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -729,7 +1258,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -741,7 +1272,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -753,7 +1286,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -765,7 +1300,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -777,7 +1314,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Новосибирск",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -789,7 +1328,9 @@
       "asn": "AS61976",
       "operator": "JSC Selectel",
       "city": "Новосибирск",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Новосибирская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -801,7 +1342,9 @@
       "asn": "AS56630",
       "operator": "Melbikomas UAB",
       "city": "Рига",
-      "country": "Латвия"
+      "country": "Латвия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -813,7 +1356,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Ростов-на-Дону",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Ростовская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -825,7 +1370,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Ростов-на-Дону",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Ростовская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -837,7 +1384,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Ростов-на-Дону",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Ростовская область",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -849,7 +1398,9 @@
       "asn": "AS60068",
       "operator": "Datacamp Limited",
       "city": "Стокгольм",
-      "country": "Швеция"
+      "country": "Швеция",
+      "administrativeRegion": "Стокгольм",
+      "countryCode": "SE"
     },
     {
       "region": "RU",
@@ -861,7 +1412,9 @@
       "asn": "AS60068",
       "operator": "Datacamp Limited",
       "city": "Стокгольм",
-      "country": "Швеция"
+      "country": "Швеция",
+      "administrativeRegion": "Стокгольм",
+      "countryCode": "SE"
     },
     {
       "region": "RU",
@@ -873,7 +1426,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Самара",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -885,7 +1440,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Самара",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -897,7 +1454,9 @@
       "asn": "AS210756",
       "operator": "EdgeCenter LLC",
       "city": "Самара",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -909,7 +1468,9 @@
       "asn": "AS49505",
       "operator": "JSC Selectel",
       "city": "Санкт-Петербург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -921,7 +1482,9 @@
       "asn": "AS49505",
       "operator": "JSC Selectel",
       "city": "Санкт-Петербург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -933,7 +1496,9 @@
       "asn": "AS49505",
       "operator": "JSC Selectel",
       "city": "Санкт-Петербург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -945,7 +1510,9 @@
       "asn": "AS49505",
       "operator": "JSC Selectel",
       "city": "Санкт-Петербург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -957,7 +1524,9 @@
       "asn": "AS49505",
       "operator": "JSC Selectel",
       "city": "Санкт-Петербург",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "Москва",
+      "countryCode": "RU"
     },
     {
       "region": "RU",
@@ -969,7 +1538,9 @@
       "asn": "AS43647",
       "operator": "SERVERCORE CIS LLC",
       "city": "Ташкент",
-      "country": "Узбекистан"
+      "country": "Узбекистан",
+      "administrativeRegion": "Ташкент",
+      "countryCode": "UZ"
     },
     {
       "region": "RU",
@@ -981,7 +1552,9 @@
       "asn": "AS56630",
       "operator": "Melbikomas UAB",
       "city": "Вильнюс",
-      "country": "Литва"
+      "country": "Литва",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -993,7 +1566,9 @@
       "asn": "AS56630",
       "operator": "Melbikomas UAB",
       "city": "Вильнюс",
-      "country": "Литва"
+      "country": "Литва",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -1005,7 +1580,9 @@
       "asn": "AS56630",
       "operator": "Melbikomas UAB",
       "city": "Вильнюс",
-      "country": "Литва"
+      "country": "Литва",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "RU",
@@ -1017,43 +1594,9 @@
       "asn": "AS56630",
       "operator": "Melbikomas UAB",
       "city": "Варшава",
-      "country": "Польша"
-    },
-    {
-      "region": "EU",
-      "pool": "GAME-EU",
-      "name": "GAME-EU-2",
-      "address": "79.127.241.67:29450",
-      "ip": "79.127.241.67",
-      "port": 29450,
-      "asn": "AS60068",
-      "operator": "Datacamp Limited",
-      "city": "Франкфурт",
-      "country": "Германия"
-    },
-    {
-      "region": "EU",
-      "pool": "GAME-EU",
-      "name": "GAME-EU-3",
-      "address": "79.127.241.68:29450",
-      "ip": "79.127.241.68",
-      "port": 29450,
-      "asn": "AS60068",
-      "operator": "Datacamp Limited",
-      "city": "Франкфурт",
-      "country": "Германия"
-    },
-    {
-      "region": "EU",
-      "pool": "GAME-EU",
-      "name": "GAME-EU-4",
-      "address": "79.127.241.69:29450",
-      "ip": "79.127.241.69",
-      "port": 29450,
-      "asn": "AS60068",
-      "operator": "Datacamp Limited",
-      "city": "Франкфурт",
-      "country": "Германия"
+      "country": "Польша",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "EU",
@@ -1065,7 +1608,9 @@
       "asn": "AS60068",
       "operator": "Datacamp Limited",
       "city": "Франкфурт",
-      "country": "Германия"
+      "country": "Германия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "EU",
@@ -1077,31 +1622,9 @@
       "asn": "AS60068",
       "operator": "Datacamp Limited",
       "city": "Франкфурт",
-      "country": "Германия"
-    },
-    {
-      "region": "EU",
-      "pool": "GAME-EU",
-      "name": "GAME-EU-7",
-      "address": "152.233.7.40:29450",
-      "ip": "152.233.7.40",
-      "port": 29450,
-      "asn": "AS60068",
-      "operator": "Datacamp Limited",
-      "city": "Франкфурт",
-      "country": "Германия"
-    },
-    {
-      "region": "EU",
-      "pool": "GAME-EU",
-      "name": "GAME-EU-8",
-      "address": "152.233.7.41:29450",
-      "ip": "152.233.7.41",
-      "port": 29450,
-      "asn": "AS60068",
-      "operator": "Datacamp Limited",
-      "city": "Франкфурт",
-      "country": "Германия"
+      "country": "Германия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "EU",
@@ -1113,7 +1636,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "EU",
@@ -1125,7 +1650,9 @@
       "asn": "AS50340",
       "operator": "JSC Selectel",
       "city": "Москва",
-      "country": "Россия"
+      "country": "Россия",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "EU",
@@ -1137,7 +1664,9 @@
       "asn": "AS16276",
       "operator": "OVH SAS",
       "city": "Варшава",
-      "country": "Польша"
+      "country": "Польша",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "EU",
@@ -1149,7 +1678,9 @@
       "asn": "AS16276",
       "operator": "OVH SAS",
       "city": "Варшава",
-      "country": "Польша"
+      "country": "Польша",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "EU",
@@ -1161,67 +1692,9 @@
       "asn": "AS16276",
       "operator": "OVH SAS",
       "city": "Варшава",
-      "country": "Польша"
-    },
-    {
-      "region": "NA",
-      "pool": "GAME-NA",
-      "name": "GAME-NA-3",
-      "address": "89.187.175.135:29450",
-      "ip": "89.187.175.135",
-      "port": 29450,
-      "asn": "AS60068",
-      "operator": "Datacamp Limited",
-      "city": "Даллас",
-      "country": "США"
-    },
-    {
-      "region": "NA",
-      "pool": "GAME-NA",
-      "name": "GAME-NA-4",
-      "address": "89.187.175.102:29450",
-      "ip": "89.187.175.102",
-      "port": 29450,
-      "asn": "AS60068",
-      "operator": "Datacamp Limited",
-      "city": "Даллас",
-      "country": "США"
-    },
-    {
-      "region": "NA",
-      "pool": "GAME-NA",
-      "name": "GAME-NA-5",
-      "address": "89.187.175.65:29450",
-      "ip": "89.187.175.65",
-      "port": 29450,
-      "asn": "AS60068",
-      "operator": "Datacamp Limited",
-      "city": "Даллас",
-      "country": "США"
-    },
-    {
-      "region": "NA",
-      "pool": "LAX",
-      "name": "LAX-ROXY1",
-      "address": "89.187.185.94:29450",
-      "ip": "89.187.185.94",
-      "port": 29450,
-      "asn": "AS60068",
-      "operator": "Datacamp Limited",
-      "city": "Лос-Анджелес",
-      "country": "США"
-    },
-    {
-      "region": "NA",
-      "pool": "NYC",
-      "name": "NYC-ROXY1",
-      "address": "89.187.179.170:29450",
-      "ip": "89.187.179.170",
-      "port": 29450,
-      "asn": "AS60068",
-      "operator": "Datacamp Limited",
-      "city": "Нью-Йорк",
-      "country": "США"
+      "country": "Польша",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "SEA",
@@ -1233,7 +1706,9 @@
       "asn": "AS60068",
       "operator": "Datacamp Limited",
       "city": "Сингапур",
-      "country": "Сингапур"
+      "country": "Сингапур",
+      "administrativeRegion": "",
+      "countryCode": ""
     },
     {
       "region": "SEA",
@@ -1245,20 +1720,10 @@
       "asn": "AS60068",
       "operator": "Datacamp Limited",
       "city": "Сингапур",
-      "country": "Сингапур"
-    },
-    {
-      "region": "SEA",
-      "pool": "SYD",
-      "name": "SYD-ROXY1",
-      "address": "143.244.63.114:29450",
-      "ip": "143.244.63.114",
-      "port": 29450,
-      "asn": "AS60068",
-      "operator": "Datacamp Limited",
-      "city": "Сидней",
-      "country": "Австралия"
+      "country": "Сингапур",
+      "administrativeRegion": "",
+      "countryCode": ""
     }
   ],
-  "legacyComparisonPending": true
+  "legacyComparisonPending": false
 }

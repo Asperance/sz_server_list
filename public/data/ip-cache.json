@@ -763,5 +763,32 @@
     "country": "Перу",
     "countryCode": "PE",
     "updatedAt": "2026-07-28T14:25:35.870Z"
+  },
+  "185.156.47.115": {
+    "asn": "AS60068",
+    "operator": "DataCamp Limited",
+    "city": "Торонто",
+    "region": "Онтарио",
+    "country": "Канада",
+    "countryCode": "CA",
+    "updatedAt": "2026-08-11T13:20:21.352Z"
+  },
+  "79.127.250.59": {
+    "asn": "AS60068",
+    "operator": "DataCamp Limited",
+    "city": "Сиэтл",
+    "region": "Вашингтон",
+    "country": "США",
+    "countryCode": "US",
+    "updatedAt": "2026-08-11T13:20:21.354Z"
+  },
+  "46.151.196.220": {
+    "asn": "AS60068",
+    "operator": "DataCamp Limited",
+    "city": "Чикаго",
+    "region": "Иллинойс",
+    "country": "США",
+    "countryCode": "US",
+    "updatedAt": "2026-08-11T13:20:21.354Z"
   }
 }

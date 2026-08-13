@@ -790,5 +790,32 @@
     "country": "США",
     "countryCode": "US",
     "updatedAt": "2026-08-11T13:20:21.354Z"
+  },
+  "152.233.27.65": {
+    "asn": "AS60068",
+    "operator": "DataCamp Limited",
+    "city": "Калгари",
+    "region": "Альберта",
+    "country": "Канада",
+    "countryCode": "CA",
+    "updatedAt": "2026-08-13T13:25:56.003Z"
+  },
+  "89.222.109.140": {
+    "asn": "AS60068",
+    "operator": "DataCamp Limited",
+    "city": "Нью-Йорк",
+    "region": "Нью-Йорк",
+    "country": "США",
+    "countryCode": "US",
+    "updatedAt": "2026-08-13T13:25:56.004Z"
+  },
+  "95.173.204.130": {
+    "asn": "AS60068",
+    "operator": "DataCamp Limited",
+    "city": "Токио",
+    "region": "Токио",
+    "country": "Япония",
+    "countryCode": "JP",
+    "updatedAt": "2026-08-13T13:25:56.004Z"
   }
 }

@@ -739,21 +739,21 @@
   },
   "79.127.209.171": {
     "asn": "AS60068",
-    "operator": "Cdn77 SCL",
+    "operator": "DataCamp Limited",
     "city": "Сантьяго",
     "region": "Сантьяго",
     "country": "Чили",
     "countryCode": "CL",
-    "updatedAt": "2026-07-24T14:00:11.430Z"
+    "updatedAt": "2026-08-24T01:46:00.322Z"
   },
   "152.233.23.183": {
     "asn": "AS60068",
-    "operator": "CDN77 Miami",
+    "operator": "DataCamp Limited",
     "city": "Майами",
     "region": "Флорида",
     "country": "США",
     "countryCode": "US",
-    "updatedAt": "2026-07-24T14:00:11.433Z"
+    "updatedAt": "2026-08-24T01:46:00.322Z"
   },
   "89.222.105.74": {
     "asn": "AS60068",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-08-27T08:48:13.381Z",
+  "generatedAt": "2026-08-27T22:08:18.449Z",
   "complete": true,
   "regionOrder": [
     "RU",
@@ -33,7 +33,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-08-27T08:48:21.359Z",
+      "dataGeneratedAt": "2026-08-27T22:08:26.819Z",
       "poolCount": 14,
       "tunnelCount": 55,
       "uniqueIpCount": 55
@@ -46,7 +46,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-08-27T08:48:13.815Z",
+      "dataGeneratedAt": "2026-08-27T22:08:18.758Z",
       "poolCount": 3,
       "tunnelCount": 8,
       "uniqueIpCount": 8
@@ -59,7 +59,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-08-27T08:48:13.740Z",
+      "dataGeneratedAt": "2026-08-27T22:08:18.702Z",
       "poolCount": 11,
       "tunnelCount": 13,
       "uniqueIpCount": 13
@@ -72,7 +72,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-08-27T08:48:14.393Z",
+      "dataGeneratedAt": "2026-08-27T22:08:19.276Z",
       "poolCount": 2,
       "tunnelCount": 2,
       "uniqueIpCount": 2
@@ -85,7 +85,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-08-27T08:48:14.300Z",
+      "dataGeneratedAt": "2026-08-27T22:08:18.918Z",
       "poolCount": 2,
       "tunnelCount": 7,
       "uniqueIpCount": 7
@@ -1151,7 +1151,7 @@
       "ip": "89.222.105.74",
       "port": 29450,
       "asn": "AS60068",
-      "operator": "CDN77 Lima",
+      "operator": "DataCamp Limited",
       "city": "Лима",
       "administrativeRegion": "Лима",
       "country": "Перу",

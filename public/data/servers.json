@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-09-02T04:04:22.078Z",
+  "generatedAt": "2026-09-02T16:24:44.302Z",
   "complete": true,
   "regionOrder": [
     "RU",
@@ -15,10 +15,10 @@
     "regionFresh": 5,
     "regionStale": 0,
     "regionUnavailable": 0,
-    "poolCount": 32,
-    "tunnelCount": 85,
-    "uniqueIpCount": 85,
-    "networkInfoCount": 85,
+    "poolCount": 35,
+    "tunnelCount": 88,
+    "uniqueIpCount": 88,
+    "networkInfoCount": 88,
     "historicalArchiveCount": 99,
     "oldServerCount": 35,
     "historicalServersLiveNow": 64,
@@ -33,7 +33,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-09-02T04:04:29.746Z",
+      "dataGeneratedAt": "2026-09-02T16:24:52.945Z",
       "poolCount": 14,
       "tunnelCount": 55,
       "uniqueIpCount": 55
@@ -46,10 +46,10 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-09-02T04:04:22.323Z",
-      "poolCount": 3,
-      "tunnelCount": 8,
-      "uniqueIpCount": 8
+      "dataGeneratedAt": "2026-09-02T16:24:44.628Z",
+      "poolCount": 5,
+      "tunnelCount": 10,
+      "uniqueIpCount": 10
     },
     "NA": {
       "code": "NA",
@@ -59,10 +59,10 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-09-02T04:04:22.298Z",
-      "poolCount": 11,
-      "tunnelCount": 13,
-      "uniqueIpCount": 13
+      "dataGeneratedAt": "2026-09-02T16:24:44.565Z",
+      "poolCount": 12,
+      "tunnelCount": 14,
+      "uniqueIpCount": 14
     },
     "SEA": {
       "code": "SEA",
@@ -72,7 +72,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-09-02T04:04:22.494Z",
+      "dataGeneratedAt": "2026-09-02T16:24:44.749Z",
       "poolCount": 2,
       "tunnelCount": 2,
       "uniqueIpCount": 2
@@ -85,7 +85,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-09-02T04:04:22.566Z",
+      "dataGeneratedAt": "2026-09-02T16:24:45.050Z",
       "poolCount": 2,
       "tunnelCount": 7,
       "uniqueIpCount": 7
@@ -1025,6 +1025,21 @@
     {
       "region": "EU",
       "regionLabel": "Европа",
+      "pool": "MAD",
+      "name": "MAD-ROXY1",
+      "address": "89.222.104.146:29450",
+      "ip": "89.222.104.146",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "Datacamp Limited",
+      "city": "Мадрид",
+      "administrativeRegion": "Мадрид",
+      "country": "Испания",
+      "countryCode": "ES"
+    },
+    {
+      "region": "EU",
+      "regionLabel": "Европа",
       "pool": "MSK2X",
       "name": "MSK2-ROXY11",
       "address": "111.88.96.28:29450",
@@ -1036,6 +1051,21 @@
       "administrativeRegion": "Москва",
       "country": "Российская Федерация",
       "countryCode": "RU"
+    },
+    {
+      "region": "EU",
+      "regionLabel": "Европа",
+      "pool": "WAW",
+      "name": "WAW-ROXY1",
+      "address": "152.233.43.77:29450",
+      "ip": "152.233.43.77",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "Datacamp Limited",
+      "city": "Варшава",
+      "administrativeRegion": "Мазовецкое воеводство",
+      "country": "Польша",
+      "countryCode": "PL"
     },
     {
       "region": "NA",
@@ -1124,6 +1154,21 @@
       "operator": "DataCamp s.r.o.",
       "city": "Даллас",
       "administrativeRegion": "Техас",
+      "country": "США",
+      "countryCode": "US"
+    },
+    {
+      "region": "NA",
+      "regionLabel": "Америка",
+      "pool": "DEN",
+      "name": "DEN-ROXY1",
+      "address": "178.249.210.12:29450",
+      "ip": "178.249.210.12",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "Datacamp Limited",
+      "city": "Денвер",
+      "administrativeRegion": "Колорадо",
       "country": "США",
       "countryCode": "US"
     },

@@ -898,5 +898,32 @@
     "country": "США",
     "countryCode": "US",
     "updatedAt": "2026-08-19T01:41:39.050Z"
+  },
+  "178.249.210.12": {
+    "asn": "AS60068",
+    "operator": "Datacamp Limited",
+    "city": "Денвер",
+    "region": "Колорадо",
+    "country": "США",
+    "countryCode": "US",
+    "updatedAt": "2026-09-02T16:24:53.448Z"
+  },
+  "89.222.104.146": {
+    "asn": "AS60068",
+    "operator": "Datacamp Limited",
+    "city": "Мадрид",
+    "region": "Мадрид",
+    "country": "Испания",
+    "countryCode": "ES",
+    "updatedAt": "2026-09-02T16:24:53.448Z"
+  },
+  "152.233.43.77": {
+    "asn": "AS60068",
+    "operator": "Datacamp Limited",
+    "city": "Варшава",
+    "region": "Мазовецкое воеводство",
+    "country": "Польша",
+    "countryCode": "PL",
+    "updatedAt": "2026-09-02T16:24:53.448Z"
   }
 }

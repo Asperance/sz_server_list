@@ -925,5 +925,14 @@
     "country": "Польша",
     "countryCode": "PL",
     "updatedAt": "2026-09-02T16:24:53.448Z"
+  },
+  "169.150.237.163": {
+    "asn": "AS60068",
+    "operator": "Datacamp Limited",
+    "city": "София",
+    "region": "София",
+    "country": "Болгария",
+    "countryCode": "BG",
+    "updatedAt": "2026-09-08T04:10:35.397Z"
   }
 }

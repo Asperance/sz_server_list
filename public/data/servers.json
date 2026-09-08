@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-09-07T17:39:03.604Z",
+  "generatedAt": "2026-09-08T04:10:27.096Z",
   "complete": true,
   "regionOrder": [
     "RU",
@@ -15,10 +15,10 @@
     "regionFresh": 5,
     "regionStale": 0,
     "regionUnavailable": 0,
-    "poolCount": 35,
-    "tunnelCount": 88,
-    "uniqueIpCount": 88,
-    "networkInfoCount": 88,
+    "poolCount": 36,
+    "tunnelCount": 89,
+    "uniqueIpCount": 89,
+    "networkInfoCount": 89,
     "historicalArchiveCount": 99,
     "oldServerCount": 35,
     "historicalServersLiveNow": 64,
@@ -33,7 +33,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-09-07T17:39:12.254Z",
+      "dataGeneratedAt": "2026-09-08T04:10:35.158Z",
       "poolCount": 14,
       "tunnelCount": 55,
       "uniqueIpCount": 55
@@ -46,10 +46,10 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-09-07T17:39:04.180Z",
-      "poolCount": 5,
-      "tunnelCount": 10,
-      "uniqueIpCount": 10
+      "dataGeneratedAt": "2026-09-08T04:10:27.668Z",
+      "poolCount": 6,
+      "tunnelCount": 11,
+      "uniqueIpCount": 11
     },
     "NA": {
       "code": "NA",
@@ -59,7 +59,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-09-07T17:39:03.782Z",
+      "dataGeneratedAt": "2026-09-08T04:10:27.376Z",
       "poolCount": 12,
       "tunnelCount": 14,
       "uniqueIpCount": 14
@@ -72,7 +72,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-09-07T17:39:04.372Z",
+      "dataGeneratedAt": "2026-09-08T04:10:27.650Z",
       "poolCount": 2,
       "tunnelCount": 2,
       "uniqueIpCount": 2
@@ -85,7 +85,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-09-07T17:39:04.254Z",
+      "dataGeneratedAt": "2026-09-08T04:10:27.990Z",
       "poolCount": 2,
       "tunnelCount": 7,
       "uniqueIpCount": 7
@@ -1051,6 +1051,21 @@
       "administrativeRegion": "Москва",
       "country": "Российская Федерация",
       "countryCode": "RU"
+    },
+    {
+      "region": "EU",
+      "regionLabel": "Европа",
+      "pool": "SOF",
+      "name": "SOF-ROXY1",
+      "address": "169.150.237.163:29450",
+      "ip": "169.150.237.163",
+      "port": 29450,
+      "asn": "AS60068",
+      "operator": "Datacamp Limited",
+      "city": "София",
+      "administrativeRegion": "София",
+      "country": "Болгария",
+      "countryCode": "BG"
     },
     {
       "region": "EU",

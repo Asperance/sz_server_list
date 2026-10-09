@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-10-08T18:44:26.414Z",
+  "generatedAt": "2026-10-09T05:44:14.978Z",
   "complete": true,
   "regionOrder": [
     "RU",
@@ -33,7 +33,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-08T18:44:34.497Z",
+      "dataGeneratedAt": "2026-10-09T05:44:23.308Z",
       "poolCount": 14,
       "tunnelCount": 55,
       "uniqueIpCount": 55
@@ -46,7 +46,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-08T18:44:26.895Z",
+      "dataGeneratedAt": "2026-10-09T05:44:15.360Z",
       "poolCount": 6,
       "tunnelCount": 11,
       "uniqueIpCount": 11
@@ -59,7 +59,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-08T18:44:26.751Z",
+      "dataGeneratedAt": "2026-10-09T05:44:15.311Z",
       "poolCount": 12,
       "tunnelCount": 14,
       "uniqueIpCount": 14
@@ -72,7 +72,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-08T18:44:27.450Z",
+      "dataGeneratedAt": "2026-10-09T05:44:16.079Z",
       "poolCount": 2,
       "tunnelCount": 2,
       "uniqueIpCount": 2
@@ -85,7 +85,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-08T18:44:27.496Z",
+      "dataGeneratedAt": "2026-10-09T05:44:16.088Z",
       "poolCount": 2,
       "tunnelCount": 7,
       "uniqueIpCount": 7

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-10-10T17:14:06.069Z",
-  "complete": true,
+  "generatedAt": "2026-10-11T05:21:48.207Z",
+  "complete": false,
   "regionOrder": [
     "RU",
     "EU",
@@ -12,8 +12,8 @@
   "summary": {
     "regionTotal": 5,
     "regionAvailable": 5,
-    "regionFresh": 5,
-    "regionStale": 0,
+    "regionFresh": 4,
+    "regionStale": 1,
     "regionUnavailable": 0,
     "poolCount": 36,
     "tunnelCount": 89,
@@ -21,19 +21,19 @@
     "networkInfoCount": 89,
     "historicalArchiveCount": 99,
     "oldServerCount": 35,
-    "historicalServersLiveNow": 64,
-    "historicalComparisonDeferred": 0
+    "historicalServersLiveNow": 9,
+    "historicalComparisonDeferred": 55
   },
   "regions": {
     "RU": {
       "code": "RU",
       "label": "Россия",
       "available": true,
-      "fresh": true,
-      "stale": false,
-      "error": null,
-      "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-10T17:14:14.884Z",
+      "fresh": false,
+      "stale": true,
+      "error": "HTTPS curl/IPv4: Command failed: curl --ipv4 --silent --show-error --fail-with-body --proto =https --connect-timeout 10 --max-time 25 --retry 3 --retry-delay 2 --retry-all-errors --retry-max-time 55 --header Accept: application/json --header Cache-Control: no-cache --header Connection: close --header User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 StalzoneServerlist/6.6 https://backend.stalcraftx.ru/address_list?login=Hi\ncurl: (28) Failed to connect to backend.stalcraftx.ru port 443 after 10002 ms: Timeout was reached\ncurl: (28) Failed to connect to | HTTPS Node fetch: fetch failed; code=UND_ERR_CONNECT_TIMEOUT | HTTPS curl/IPv4 without certificate verification: Command failed: curl --ipv4 --insecure --silent --show-error --fail-with-body --proto =https --connect-timeout 10 --max-time 25 --retry 3 --retry-delay 2 --retry-all-errors --retry-max-time 55 --header Accept: application/json --header Cache-Control: no-cache --header Connection: close --header User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 StalzoneServerlist/6.6 https://backend.stalcraftx.ru/address_list?login=Hi\ncurl: (28) Failed to connect to backend.stalcraftx.ru port 443 after 10002 ms: Timeout was reached\ncurl: (28) Failed to | HTTP curl/IPv4: Command failed: curl --ipv4 --silent --show-error --fail-with-body --proto =http --connect-timeout 10 --max-time 25 --retry 3 --retry-delay 2 --retry-all-errors --retry-max-time 55 --header Accept: application/json --header Cache-Control: no-cache --header Connection: close --header User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 StalzoneServerlist/6.6 http://backend.stalcraftx.ru/address_list?login=Hi\ncurl: (28) Failed to connect to backend.stalcraftx.ru port 80 after 10002 ms: Timeout was reached\ncurl: (28) Failed to connect to ba | HTTP Node fetch: fetch failed; code=UND_ERR_CONNECT_TIMEOUT",
+      "fallbackSource": "previous_snapshot",
+      "dataGeneratedAt": "2026-10-10T17:14:06.069Z",
       "poolCount": 14,
       "tunnelCount": 55,
       "uniqueIpCount": 55
@@ -46,7 +46,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-10T17:14:06.380Z",
+      "dataGeneratedAt": "2026-10-11T05:21:48.514Z",
       "poolCount": 6,
       "tunnelCount": 11,
       "uniqueIpCount": 11
@@ -59,7 +59,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-10T17:14:06.452Z",
+      "dataGeneratedAt": "2026-10-11T05:21:48.507Z",
       "poolCount": 12,
       "tunnelCount": 14,
       "uniqueIpCount": 14
@@ -72,7 +72,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-10T17:14:06.938Z",
+      "dataGeneratedAt": "2026-10-11T05:21:48.649Z",
       "poolCount": 2,
       "tunnelCount": 2,
       "uniqueIpCount": 2
@@ -85,7 +85,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-10T17:14:06.535Z",
+      "dataGeneratedAt": "2026-10-11T05:21:48.918Z",
       "poolCount": 2,
       "tunnelCount": 7,
       "uniqueIpCount": 7

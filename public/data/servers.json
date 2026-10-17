@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-10-16T16:27:56.719Z",
+  "generatedAt": "2026-10-17T03:59:27.393Z",
   "complete": true,
   "regionOrder": [
     "RU",
@@ -33,7 +33,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-16T16:28:04.855Z",
+      "dataGeneratedAt": "2026-10-17T03:59:35.458Z",
       "poolCount": 14,
       "tunnelCount": 55,
       "uniqueIpCount": 55
@@ -46,7 +46,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-16T16:27:57.305Z",
+      "dataGeneratedAt": "2026-10-17T03:59:27.895Z",
       "poolCount": 6,
       "tunnelCount": 11,
       "uniqueIpCount": 11
@@ -59,7 +59,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-16T16:27:56.975Z",
+      "dataGeneratedAt": "2026-10-17T03:59:27.626Z",
       "poolCount": 12,
       "tunnelCount": 14,
       "uniqueIpCount": 14
@@ -72,7 +72,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-16T16:27:57.558Z",
+      "dataGeneratedAt": "2026-10-17T03:59:28.239Z",
       "poolCount": 2,
       "tunnelCount": 2,
       "uniqueIpCount": 2
@@ -85,7 +85,7 @@
       "stale": false,
       "error": null,
       "fallbackSource": null,
-      "dataGeneratedAt": "2026-10-16T16:27:57.132Z",
+      "dataGeneratedAt": "2026-10-17T03:59:27.782Z",
       "poolCount": 2,
       "tunnelCount": 7,
       "uniqueIpCount": 7
@@ -837,8 +837,8 @@
       "port": 29450,
       "asn": "AS49505",
       "operator": "Selectel Network",
-      "city": "Санкт-Петербург",
-      "administrativeRegion": "Санкт-Петербург",
+      "city": "Москва",
+      "administrativeRegion": "Москва",
       "country": "Российская Федерация",
       "countryCode": "RU"
     },
@@ -852,8 +852,8 @@
       "port": 29450,
       "asn": "AS49505",
       "operator": "Selectel Network",
-      "city": "Санкт-Петербург",
-      "administrativeRegion": "Санкт-Петербург",
+      "city": "Москва",
+      "administrativeRegion": "Москва",
       "country": "Российская Федерация",
       "countryCode": "RU"
     },
@@ -867,8 +867,8 @@
       "port": 29450,
       "asn": "AS49505",
       "operator": "Selectel Network",
-      "city": "Санкт-Петербург",
-      "administrativeRegion": "Санкт-Петербург",
+      "city": "Москва",
+      "administrativeRegion": "Москва",
       "country": "Российская Федерация",
       "countryCode": "RU"
     },
@@ -882,8 +882,8 @@
       "port": 29450,
       "asn": "AS49505",
       "operator": "Selectel Network",
-      "city": "Санкт-Петербург",
-      "administrativeRegion": "Санкт-Петербург",
+      "city": "Москва",
+      "administrativeRegion": "Москва",
       "country": "Российская Федерация",
       "countryCode": "RU"
     },
@@ -897,8 +897,8 @@
       "port": 29450,
       "asn": "AS49505",
       "operator": "Selectel Network",
-      "city": "Санкт-Петербург",
-      "administrativeRegion": "Санкт-Петербург",
+      "city": "Москва",
+      "administrativeRegion": "Москва",
       "country": "Российская Федерация",
       "countryCode": "RU"
     },
